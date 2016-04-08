@@ -41,12 +41,12 @@ categories:
    * QYSDK 整个SDK的主入口，单例;主要提供SDK初始化、追踪用户浏览信息、注销当前账号、获取客服聊天ViewController、获取会话管理类功能。
    * 添加 SDK 初始化方法
    
-	   -(BOOL)application:(UIApplication *)application 	  didFinishLaunchingWithOptions:(NSDictionary 	  *)launchOptions {
+	    -(BOOL)application:(UIApplication *)application 	  didFinishLaunchingWithOptions:(NSDictionary 	  *)launchOptions {
 	
    		 [[QYSDK sharedSDK] registerAppId:AppKey
   	                                appName:App名称];
    		 return YES;
-	 }  
+	    }  
 appName(就是SDK 1.0.0版本的cerName,参数名变了) 对应管理后台添加一个app时填写的App名称
    
 * 登出
@@ -196,8 +196,9 @@ appName(就是SDK 1.0.0版本的cerName,参数名变了) 对应管理后台添�
  ＊ 如果没有哪句先制作推送证书并在管理后台配置 这个七鱼文档有,我也借用下这个真不好写[http://qiyukf.com/doc/sdk/_book/iOS_apns.html](http://qiyukf.com/doc/sdk/_book/iOS_apns.html)
         
         [[QYSDK sharedSDK] registerWithAppID:你的APPKEY
-                              cerName:你的推送证书名];
-
+                              cerName:你的推送证书名];//但是我在sdk里面没找到这个方法 
+ 
+      
        - (void)registerAPNs
      {
      if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerForRemoteNotifications)])
@@ -221,6 +222,12 @@ appName(就是SDK 1.0.0版本的cerName,参数名变了) 对应管理后台添�
      {
      [[QYSDK sharedSDK] updateApnsToken:deviceToken];
      }
+     
+#### 三.我遇到的问题
+![](http://a3.qpic.cn/psb?/V12O8C3E0PqoRX/giNPs3jE6hhtdS2zjamUXfTESQGGKPFH8*2jf2DbM0s!/b/dHABAAAAAAAA&bo=BAWAAgAAAAADB6E!&rf=viewer_4)
+
+ * 解决：工程里使用的ZXing的二维码识别类库中，有bitcount的符号，而SDK由于支持bitCode所以产生了bit_cnt的符号，编译后造成冲突，解决方法就是把ZXing文件中的叫bitcount的改下名字就可以了  全局搜bitcount 改个名字的 如wk_bitcount
+ 还有些问题我在 上面陈述的时候也提到了 我遇到的问题，也希望能帮到你0.0
         
  	  
  	  
