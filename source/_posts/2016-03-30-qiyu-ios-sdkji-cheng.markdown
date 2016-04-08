@@ -224,7 +224,7 @@ appName(就是SDK 1.0.0版本的cerName,参数名变了) 对应管理后台添�
      }
      
 #### 三.我遇到的问题
-![](http://a3.qpic.cn/psb?/V12O8C3E0PqoRX/giNPs3jE6hhtdS2zjamUXfTESQGGKPFH8*2jf2DbM0s!/b/dHABAAAAAAAA&bo=BAWAAgAAAAADB6E!&rf=viewer_4)
+![](https://github.com/menhui222/BLOG_Image/blob/master/mh_1.png?raw=true)
 
  * 解决：工程里使用的ZXing的二维码识别类库中，有bitcount的符号，而SDK由于支持bitCode所以产生了bit_cnt的符号，编译后造成冲突，解决方法就是把ZXing文件中的叫bitcount的改下名字就可以了  全局搜bitcount 改个名字的 如wk_bitcount
  还有些问题我在 上面陈述的时候也提到了 我遇到的问题，也希望能帮到你0.0
