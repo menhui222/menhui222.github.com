@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>menhui222&#39;blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="menhui222'blog">
+<meta property="og:url" content="http://menhui222.github.io/index.html">
+<meta property="og:site_name" content="menhui222'blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="menhui222'blog">
+  
+    <link rel="alternate" href="/atom.xml" title="menhui222&#39;blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">menhui222&#39;blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://menhui222.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-七鱼客服" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/30/七鱼客服/" class="article-date">
+  <time datetime="2016-03-30T03:49:56.000Z" itemprop="datePublished">2016-03-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/30/七鱼客服/">七鱼客服</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 导语：写这个文章首先是我刚建立用git来管理blog为了试试，但是我这样的新手感觉没东西可写，就最近集成了七鱼客服来写写 其实七鱼客服文档已经比较详细，文档地址<a href="http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html" target="_blank" rel="external">http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html</a> 我当然也加了自己在集成过程中遇到的一些的小东西，不过这些你也可以联系客服他们也很有耐心给你解决的，而且效率也是杠杠的 0.0  不过看我也希望我写的东西给大家带来方便。</p>
+<h4 id="一-集成SDK"><a href="#一-集成SDK" class="headerlink" title="一.集成SDK"></a>一.集成SDK</h4><h5 id="1-下载-QY-SDK，得到一个-a-文件、QYResouce-文件夹和-ExportHeaders-文件夹，将他们导入工程"><a href="#1-下载-QY-SDK，得到一个-a-文件、QYResouce-文件夹和-ExportHeaders-文件夹，将他们导入工程" class="headerlink" title="1.下载 QY SDK，得到一个 .a 文件、QYResouce 文件夹和 ExportHeaders 文件夹，将他们导入工程"></a>1.下载 QY SDK，得到一个 .a 文件、QYResouce 文件夹和 ExportHeaders 文件夹，将他们导入工程</h5><p>下载sdk地址<a href="http://nos.netease.com/ysf/QIYU_iOS_SDK_v1.2.1.zip" target="_blank" rel="external">http://nos.netease.com/ysf/QIYU_iOS_SDK_v1.2.1.zip</a></p>
+<h5 id="2-添加-QY-SDK-依赖库"><a href="#2-添加-QY-SDK-依赖库" class="headerlink" title="2. 添加 QY SDK 依赖库"></a>2. 添加 QY SDK 依赖库</h5><ul>
+<li><p>MobileCoreService.framework</p>
+</li>
+<li><p>SystemConfiguration.framework</p>
+</li>
+<li><p>AVFoundation.framwork</p>
+</li>
+<li><p>CoreTelephony.framework</p>
+</li>
+<li><p>CoreMedia.framework</p>
+</li>
+<li><p>AudioToolbox.framework</p>
+</li>
+<li><p>libz.lib</p>
+</li>
+<li><p>libstdc++.6.0.9.dylib</p>
+</li>
+<li><p>libsqlite3.0.dylib</p>
+</li>
+</ul>
+<h6 id="3-在-Other-Linker-Flags-中添加-ObjC"><a href="#3-在-Other-Linker-Flags-中添加-ObjC" class="headerlink" title="3.在 Other Linker Flags 中添加 -ObjC"></a>3.在 Other Linker Flags 中添加 -ObjC</h6><ul>
+<li>在需要使用 SDK 的地方 import “QYSDK.h”</li>
+</ul>
+<h4 id="二-SDK-类讲解"><a href="#二-SDK-类讲解" class="headerlink" title="二.SDK 类讲解"></a>二.SDK 类讲解</h4><ul>
+<li>QYSDK 整个SDK的主入口，单例;主要提供SDK初始化、追踪用户浏览信息、注销当前账号、获取客服聊天ViewController、获取会话管理类功能。</li>
+<li><p>添加 SDK 初始化方法</p>
+<p>   -(BOOL)application:(UIApplication <em>)application       didFinishLaunchingWithOptions:(NSDictionary       </em>)launchOptions {</p>
+<pre><code>[[QYSDK sharedSDK] registerAppId:AppKey
+                          appName:App名称];
+return YES;
+</code></pre><p>   }<br>appName(就是SDK 1.0.0版本的cerName,参数名变了) 对应管理后台添加一个app时填写的App名称</p>
+</li>
+</ul>
+<ul>
+<li><p>登出<br> [[QYSDK sharedSDK] logout:^(){}];</p>
+<p> 应用层登出/注销自己的账号时需要调用 SDK 的登出操作，该操作会通知服务器进行 APNS 推送信息的解绑操作，避免用户已登出但推送依然发送到当前设备的情况发生。</p>
+<ul>
+<li>获取客服聊天ViewController</li>
+</ul>
+</li>
+</ul>
+<pre><code>   //获取QYSessionViewController
+   QYSource *source = [[QYSource alloc] init];
+   source.title =  @&quot;...&quot;;
+   source.urlString = @&quot;http://iasku.com/&quot;;
+   QYSessionViewController *vc = [[QYSDK sharedSDK] sessionViewController]; 
+   vc.sessionTitle = @&quot;客服&quot;;
+   vc.source = source;
+   vc.navigationItem.hidesBackButton = YES;
+   [self.navigationController pushViewController:vc animated:YES];`
+
+注意:应用层获取此ViewController之后，必须嵌入到UINavigationcontroller中，这样就可以获得会话窗口的UI以及所有功能。
+</code></pre><ul>
+<li><p>设置用户信息</p>
+<p>创建一个QYUserInfo实例，将包含用户信息的 JSON 字符串填充到QYUserInfo.data。调用setUserInfo时将此QYUserInfo实例作为参数传递给七鱼云客服 SDK。</p>
+</li>
+</ul>
+<pre><code>   QYUserInfo *userInfo = [[QYUserInfo alloc] init];
+   userInfo.userId = @&quot;uid&quot;;
+
+   userInfo.data = @&quot;[{\&quot;key\&quot;:\&quot;real_name\&quot;, \&quot;value\&quot;:\&quot;土豪\&quot;},&quot;&quot;{\&quot;key\&quot;:\&quot;mobile_phone\&quot;, \&quot;hidden\&quot;:true},&quot;
+            &quot;{\&quot;key\&quot;:\&quot;email\&quot;, \&quot;value\&quot;:\&quot;13800000000@163.com\&quot;},&quot;
+              &quot;{\&quot;index\&quot;:0, \&quot;key\&quot;:\&quot;account\&quot;, \&quot;label\&quot;:\&quot;账号\&quot;, \&quot;value\&quot;:\&quot;zhangsan\&quot;, \&quot;href\&quot;:\&quot;http://example.domain/user/zhangsan\&quot;},&quot;
+              &quot;{\&quot;index\&quot;:1, \&quot;key\&quot;:\&quot;sex\&quot;, \&quot;label\&quot;:\&quot;性别\&quot;, \&quot;value\&quot;:\&quot;先生\&quot;},&quot;
+              &quot;{\&quot;index\&quot;:5, \&quot;key\&quot;:\&quot;reg_date\&quot;, \&quot;label\&quot;:\&quot;注册日期\&quot;, \&quot;value\&quot;:\&quot;2015-11-16\&quot;},&quot;
+              &quot;{\&quot;index\&quot;:6, \&quot;key\&quot;:\&quot;last_login\&quot;, \&quot;label\&quot;:\&quot;上次登录时间\&quot;, \&quot;value\&quot;:\&quot;2015-12-22 15:38:54\&quot;}]&quot;;`
+
+   [[QYSDK sharedSDK] setUserInfo:userInfo];
+
+
+注意：data字段的内容需使用JSON.stringify()进行序列化。为保持良好的兼容性，若要支持较低版本的浏览器（如IE8及更低版本）则需引入第三方JSON库，如 [JSON3](http://bestiejs.github.io/json3/)。
+七鱼云客服系统轻量对接中的参数，不论是 Web SDK、iOS SDK、还是 Android SDK，都由一个用户唯一性标识uid和一个表示用户信息的 JSON 数组data组成。
+
+ 在iOS SDK 中，定义了一个保存用户信息的结构体：iOS 中为     QYUserInfo。iOS SDK 中，QYUserInfo.userId成员为用户唯一    性标识字符串，QYUserInfo.data成员为表示用户信息的 JSON 字符串。
+
+
+
+  userInfo: 字段“id”表示用户id，字段“data”表示用户信息
+七鱼云客服企业信息对接开发指南原文档[http://qiyukf.com/doc/    sdk/_book/qiyu_crm_interface.html](http://qiyukf.com/    doc/sdk/_book/qiyu_crm_interface.html)
+</code></pre><ul>
+<li>获取自定义UI类 </li>
+</ul>
+<pre><code> //会话窗口上方提示条中的文本字体颜色
+  [[QYSDK sharedSDK] customUIConfig].sessionTipTextColor = [UIColor blackColor];
+
+  //会话窗口上方提示条中的文本字体大小
+  [[QYSDK sharedSDK] customUIConfig].sessionTipTextFontSize = 20;
+
+ //访客文本消息字体颜色
+ [[QYSDK sharedSDK] customUIConfig].customMessageTextColor = [UIColor blackColor];
+
+ //访客文本消息字体大小
+ `[[QYSDK sharedSDK] customUIConfig].customMessageTextFontSize = 20;`
+
+ //客服文本消息字体颜色
+ [[QYSDK sharedSDK] customUIConfig].serviceMessageTextColor = [UIColor blackColor];
+
+ //客服文本消息字体大小
+ [[QYSDK sharedSDK] customUIConfig].serviceMessageTextFontSize = 20;`
+
+ //提示文本消息字体颜色
+ [[QYSDK sharedSDK] customUIConfig].tipMessageTextColor = [UIColor blueColor];`
+
+ //提示文本消息字体大小
+ [[QYSDK sharedSDK] customUIConfig].tipMessageTextFontSize = 16;`
+
+ //输入框文本消息字体颜色
+ [[QYSDK sharedSDK] customUIConfig].inputTextColor = [UIColor blueColor];
+
+ //输入框文本消息字体大小
+ [[QYSDK sharedSDK] customUIConfig].inputTextFontSize = 20;
+
+// 消息tableview的背景图片
+ UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@&quot;session_bg&quot;]];
+ imageView.contentMode = UIViewContentModeScaleToFill;
+ [[QYSDK sharedSDK] customUIConfig].sessionBackground = imageView; 
+
+ //会话窗口上方提示条中的背景颜色
+ [[QYSDK sharedSDK] customUIConfig].sessionTipBackgroundColor = [UIColor blueColor];
+
+ //访客头像
+ [[QYSDK sharedSDK] customUIConfig].customerHeadImage = [UIImage imageNamed:@&quot;customer_head&quot;];
+
+ //客服头像
+ [[QYSDK sharedSDK] customUIConfig].serviceHeadImage = [UIImage imageNamed:@&quot;service_head&quot;];
+
+ //消息竖直方向间距
+ //[[QYSDK sharedSDK] customUIConfig].sessionMessageSpacing = 20;
+
+ //访客消息气泡normal图片
+ [[QYSDK sharedSDK] customUIConfig].customerMessageBubbleNormalImage = [[UIImage imageNamed:@&quot;icon_sender_node&quot;]
+                                      resizableImageWithCapInsets:UIEdgeInsetsMake(15,15,30,30)
+                                      resizingMode:UIImageResizingModeStretch];
+
+
+ //访客消息气泡pressed图片
+ [[QYSDK sharedSDK] customUIConfig].customerMessageBubblePressedImage = [[UIImage imageNamed:@&quot;icon_sender_node&quot;]
+                                       resizableImageWithCapInsets:UIEdgeInsetsMake(15,15,30,30)
+                                       resizingMode:UIImageResizingModeStretch];
+
+ //客服消息气泡normal图片                    
+ [[QYSDK sharedSDK] customUIConfig].serviceMessageBubbleNormalImage = [[UIImage imageNamed:@&quot;icon_receiver_node&quot;]
+                                     resizableImageWithCapInsets:UIEdgeInsetsMake(15,30,30,15)
+                                     resizingMode:UIImageResizingModeStretch];
+
+ //客服消息气泡pressed图片                                    
+ [[QYSDK sharedSDK] customUIConfig].serviceMessageBubblePressedImage = [[UIImage imageNamed:@&quot;icon_receiver_node&quot;]
+                                      resizableImageWithCapInsets:UIEdgeInsetsMake(15,30,30,15)
+                                      resizingMode:UIImageResizingModeStretch];
+
+ //默认是YES,默认rightBarButtonItem内容是黑色，设置为NO，可以修改为白色                                    
+ [[QYSDK sharedSDK] customUIConfig].rightBarButtonItemColorBlackOrWhite = NO;
+</code></pre><p>   QYCustomUIConfig是负责自定义UI的类；目前主要是定义会话相关的字体颜色、大小、头像图片等。<br>      注意：访客头像动态获取我目前没发现问题，但是我问客服她说没这个功能，但是我只成功的，但是sessionTipTextColor这个属性设置没有效果，但是后期他们会补上，可能你目前已经修复这个问题（我目前他的demo是 1.0 (build 10) 大小：7.4 MB 2016-03-24 ）</p>
+<pre><code>还有因为静态库不能放资源 所以我们还可以直接更换图片素材QYCustomUIConfig只是负责替换部分皮肤相关内容，不包含所有的图片素材的替换。iOS SDK支持所有图片素材替换，只需要新建QYCustomResource.bundle，在其中放置跟QYResource.bundle中同名的图片素材，即可实现替换。为了效果好，应该放置同等尺寸的图片。
+注意：名字得一样
+</code></pre><p> ####三.APNS推送</p>
+<ul>
+<li><p>如果你的工程已经注册推送就直接导出p12文件，上传就可以了，我就是之前工程已经有推送了。<br>＊ 如果没有哪句先制作推送证书并在管理后台配置 这个七鱼文档有,我也借用下这个真不好写<a href="http://qiyukf.com/doc/sdk/_book/iOS_apns.html" target="_blank" rel="external">http://qiyukf.com/doc/sdk/_book/iOS_apns.html</a></p>
+<pre><code>[[QYSDK sharedSDK] registerWithAppID:你的APPKEY
+                      cerName:你的推送证书名];//但是我在sdk里面没找到这个方法 
+</code></pre></li>
+</ul>
+<pre><code>  - (void)registerAPNs
+{
+if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerForRemoteNotifications)])
+{
+   UIUserNotificationType types = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound |         UIRemoteNotificationTypeAlert;
+   UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types
+   categories:nil];
+   [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+   [[UIApplication sharedApplication] registerForRemoteNotifications];
+}
+else
+{
+   UIRemoteNotificationType types = UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound |         UIRemoteNotificationTypeBadge;
+   [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
+}
+}
+
+
+
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+[[QYSDK sharedSDK] updateApnsToken:deviceToken];
+}
+</code></pre><h4 id="三-我遇到的问题"><a href="#三-我遇到的问题" class="headerlink" title="三.我遇到的问题"></a>三.我遇到的问题</h4><p><img src="https://github.com/menhui222/BLOG_Image/blob/master/mh_1.png?raw=true" alt=""></p>
+<ul>
+<li>解决：工程里使用的ZXing的二维码识别类库中，有bitcount的符号，而SDK由于支持bitCode所以产生了bit_cnt的符号，编译后造成冲突，解决方法就是把ZXing文件中的叫bitcount的改下名字就可以了  全局搜bitcount 改个名字的 如wk_bitcount<br>还有些问题我在 上面陈述的时候也提到了 我遇到的问题，也希望能帮到你0.0</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://menhui222.github.io/2016/03/30/七鱼客服/" data-id="cir4d1v6u00015e07gc5wq9jn" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-我的相关" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/07/我的相关/" class="article-date">
+  <time datetime="2016-03-07T03:47:29.000Z" itemprop="datePublished">2016-03-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/07/我的相关/">我的相关</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##<a href="http://weibo.com/p/1005052415625901/home?from=page_100505&amp;mod=TAB&amp;is_all=1#place" target="_blank" rel="external">新浪微博</a></p>
+<p>##<a href="https://github.com/menhui222" target="_blank" rel="external">github</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://menhui222.github.io/2016/03/07/我的相关/" data-id="cir4d1v6p00005e07ejx3u5v5" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/03/30/七鱼客服/">七鱼客服</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/07/我的相关/">我的相关</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 menhui222<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
