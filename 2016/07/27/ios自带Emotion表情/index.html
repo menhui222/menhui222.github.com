@@ -3,21 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>我的相关 | menhui222&#39;blog</title>
+  <title>ios自带Emotion表情 | menhui222&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##新浪微博
-##github">
+  <meta name="description" content="##iOS 自定义emoji表情键盘
+####首先 ，想要获取系统的表情，要首先知道表情对应的UTF8 的编码方式    //将数字转为    func  EMOJI_CODE_TO_SYMBOL(x:Int)-&amp;gt; Int {    return ((((0x808080F0 | (x &amp;amp; 0x3F000) &amp;gt;&amp;gt; 4) | (x &amp;amp; 0xFC0) &amp;lt;&amp;lt;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的相关">
-<meta property="og:url" content="http://menhui222.github.io/2016/03/07/我的相关/index.html">
+<meta property="og:title" content="ios自带Emotion表情">
+<meta property="og:url" content="http://menhui222.github.io/2016/07/27/ios自带Emotion表情/index.html">
 <meta property="og:site_name" content="menhui222'blog">
-<meta property="og:description" content="##新浪微博
-##github">
-<meta property="og:updated_time" content="2016-07-27T03:49:15.000Z">
+<meta property="og:description" content="##iOS 自定义emoji表情键盘
+####首先 ，想要获取系统的表情，要首先知道表情对应的UTF8 的编码方式    //将数字转为    func  EMOJI_CODE_TO_SYMBOL(x:Int)-&amp;gt; Int {    return ((((0x808080F0 | (x &amp;amp; 0x3F000) &amp;gt;&amp;gt; 4) | (x &amp;amp; 0xFC0) &amp;lt;&amp;lt;">
+<meta property="og:image" content="https://github.com/menhui222/BLOG_Image/blob/master/blog_image/enoji_1.png?raw=true">
+<meta property="og:updated_time" content="2016-07-27T06:43:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的相关">
-<meta name="twitter:description" content="##新浪微博
-##github">
+<meta name="twitter:title" content="ios自带Emotion表情">
+<meta name="twitter:description" content="##iOS 自定义emoji表情键盘
+####首先 ，想要获取系统的表情，要首先知道表情对应的UTF8 的编码方式    //将数字转为    func  EMOJI_CODE_TO_SYMBOL(x:Int)-&amp;gt; Int {    return ((((0x808080F0 | (x &amp;amp; 0x3F000) &amp;gt;&amp;gt; 4) | (x &amp;amp; 0xFC0) &amp;lt;&amp;lt;">
+<meta name="twitter:image" content="https://github.com/menhui222/BLOG_Image/blob/master/blog_image/enoji_1.png?raw=true">
   
     <link rel="alternate" href="/atom.xml" title="menhui222&#39;blog" type="application/atom+xml">
   
@@ -66,10 +68,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-我的相关" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-ios自带Emotion表情" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/03/07/我的相关/" class="article-date">
-  <time datetime="2016-03-07T03:47:29.000Z" itemprop="datePublished">2016-03-07</time>
+    <a href="/2016/07/27/ios自带Emotion表情/" class="article-date">
+  <time datetime="2016-07-27T05:45:15.000Z" itemprop="datePublished">2016-07-27</time>
 </a>
     
   </div>
@@ -80,7 +82,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      我的相关
+      ios自带Emotion表情
     </h1>
   
 
@@ -88,13 +90,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##<a href="http://weibo.com/p/1005052415625901/home?from=page_100505&amp;mod=TAB&amp;is_all=1#place" target="_blank" rel="external">新浪微博</a></p>
-<p>##<a href="https://github.com/menhui222" target="_blank" rel="external">github</a></p>
+        <p>##iOS 自定义emoji表情键盘</p>
+<p>####首先 ，想要获取系统的表情，要首先知道表情对应的UTF8 的编码方式<br>    //将数字转为<br>    func  EMOJI_CODE_TO_SYMBOL(x:Int)-&gt; Int {<br>    return ((((0x808080F0 | (x &amp; 0x3F000) &gt;&gt; 4) | (x &amp; 0xFC0) &lt;&lt; 10) | (x &amp; 0x1C0000) &lt;&lt; 18) | (x &amp; 0x3F) &lt;&lt; 24)}</p>
+<p>####接着，将得到表情数组<br>    //获取默认表情数组<br>    func defaultEmoticons() -&gt; [String] {<br>        var  array = <a href="">String</a><br>        for (var i = 0x1F600; i &lt;= 0x1F64F; i+=1) {<br>            if (i &lt; 0x1F641 || i &gt; 0x1F644) {<br>                print(i)<br>                var symbol = EMOJI_CODE_TO_SYMBOL(i)<br>                print(sym)<br>                let emoji =  NSString(bytes: &amp;symbol, length:sizeof(Int), encoding: NSUTF8StringEncoding) as! String<br>                array.append(emoji)<br>            }<br>        }<br>        return array;<br>    }</p>
+<p>####服务器和安卓的兼容<br>让服务器用mysql来存储（用高版本）自动识别 uicode 的表情编码，安卓是可以识别的具体请看<a href="http://blog.csdn.net/qdkfriend/article/details/7576524" target="_blank" rel="external">http://blog.csdn.net/qdkfriend/article/details/7576524</a><br><img src="https://github.com/menhui222/BLOG_Image/blob/master/blog_image/enoji_1.png?raw=true" alt="image"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://menhui222.github.io/2016/03/07/我的相关/" data-id="cir4j0fad0000hf07fgkp3wx9" class="article-share-link">Partager</a>
+      <a data-url="http://menhui222.github.io/2016/07/27/ios自带Emotion表情/" data-id="cir4j0fag0001hf07leipdftu" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -103,15 +107,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/03/30/七鱼客服/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
-      <div class="article-nav-title">
-        
-          七鱼客服
-        
-      </div>
-    </a>
   
+    <a href="/2016/03/30/七鱼客服/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">七鱼客服</div>
+    </a>
   
 </nav>
 
