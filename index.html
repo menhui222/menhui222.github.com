@@ -48,9 +48,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://menhui222.github.io"></form>
@@ -60,6 +60,181 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-用CAShapeLayer-实现打钩动画轨迹效果" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/27/用CAShapeLayer-实现打钩动画轨迹效果/" class="article-date">
+  <time datetime="2016-07-27T07:01:06.000Z" itemprop="datePublished">2016-07-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/27/用CAShapeLayer-实现打钩动画轨迹效果/">用CAShapeLayer 实现打钩动画轨迹效果</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>####首先对CAShapeLayer的了解<br>CAShapeLayer相关的动画知识.</p>
+<p>普通CALayer在被初始化时是需要给一个frame值的,这个frame值一般都与给定view的bounds值一致,它本身是有形状的,而且是矩形.</p>
+<p>CAShapeLayer在初始化时也需要给一个frame值,但是,它本身没有形状,它的形状来源于你给定的一个path,然后它去取CGPath值,它与CALayer有着很大的区别<br>CAShapeLayer有着几点很重要:</p>
+<ol>
+<li><p>它依附于一个给定的path,必须给与path,而且,即使path不完整也会自动首尾相接</p>
+</li>
+<li><p>strokeStart以及strokeEnd代表着在这个path中所占用的百分比</p>
+</li>
+<li><p>CAShapeLayer动画仅仅限于沿着边缘的动画效果,它实现不了填充效果</p>
+</li>
+</ol>
+<p>####实现打钩效果<br><img src="https://github.com/menhui222/BLOG_Image/blob/master/blog_image/check_1.gif?raw=true" alt="image"></p>
+<p><img src="https://github.com/menhui222/BLOG_Image/blob/master/blog_image/check_2.gif?raw=true" alt="image"></p>
+<pre><code>class CheckControl: UIControl {
+
+//线的宽度
+var lineWith:CGFloat = 2.0
+//颜色
+var lineColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1.000)
+//是否有外圆边框
+var isRoundBorder :Bool = true
+
+lazy var lineLayer:CAShapeLayer = {
+    let ret = CAShapeLayer()
+    ret.strokeColor = self.lineColor.CGColor;
+    ret.fillColor = UIColor.clearColor().CGColor;
+    ret.lineCap = kCALineCapRound;
+    ret.lineJoin = kCALineJoinRound;
+    ret.lineWidth = self.lineWith;
+    ret.path = self.checkmarkPath().CGPath;
+    return ret;
+
+}()
+func check(){
+    //lineLayer = self.checkmarkLayerWithColor()
+    self.layer.addSublayer(self.lineLayer)
+    lineLayer.strokeStart = 0;
+    lineLayer.strokeEnd = 0;
+    CATransaction.begin()
+    CATransaction.setCompletionBlock {
+        self.lineLayer.strokeStart = 0.0;
+        self.lineLayer.strokeEnd = 1.0;
+    }
+
+    CATransaction.commit()
+}
+func dissmiss(){
+
+    CATransaction.begin();
+    CATransaction.setCompletionBlock {
+        self.lineLayer.strokeStart = 0.0;
+        self.lineLayer.strokeEnd = 0.0;
+    }
+
+    CATransaction.commit();
+}
+
+/**
+ 可以画的有效区域
+
+ - returns: CGRect
+ */
+func insetRect() -&gt;CGRect{
+    var ret = self.bounds
+    ret = CGRectInset(ret, 2 * lineWith , 2 * lineWith)
+    return ret
+}
+/**
+ 外切圆半径
+
+ - returns: CGFloat
+ */
+func outerRadius() -&gt;CGFloat{
+
+    return sqrt(pow(self.insetRect().size.width, 2) + pow(self.insetRect().size.height, 2)) / 2;
+}
+/**
+    内切圆半径
+ - returns: CGFloat
+ */
+func innerRadius() -&gt; CGFloat{
+    return min(self.insetRect().size.width, self.insetRect().size.height) / 2
+}
+/**
+ 获取中心即圆心
+
+ - returns: CGPoint
+ */
+func bounsCenter() -&gt; CGPoint{
+
+    return CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)
+}
+
+
+
+/**
+ 钩号起始点
+
+ - returns: CGPoint
+ */
+func startPoint() -&gt; CGPoint{
+    let angle:Double = 13 * M_PI / 12
+    return CGPointMake(self.bounsCenter().x + self.innerRadius() * CGFloat(cos(angle)),self.bounsCenter().y + self.innerRadius() * CGFloat(sin(angle)))
+}
+/**
+ 钩号中间转折点
+
+ - returns: CGPoint
+ */
+func middlePoint() -&gt; CGPoint {
+    return CGPointMake(self.bounsCenter().x - self.innerRadius() * 0.25, self.bounsCenter().y + self.innerRadius() * 0.8)
+}
+/**
+ 钩号终止点
+
+ - returns: CGPoint
+ */
+func endPoint() -&gt; CGPoint {
+    let  angle: Double = 3*M_PI/2 + M_PI*3/10
+    return CGPointMake(self.bounsCenter().x + self.outerRadius() * CGFloat(cos(angle)), self.bounsCenter().y + self.outerRadius() * CGFloat(sin(angle)));
+}
+func checkmarkPath()-&gt; UIBezierPath{
+    let  path = UIBezierPath()
+    path.moveToPoint(self.startPoint())
+    path.addLineToPoint(self.middlePoint())
+    path.addLineToPoint(self.endPoint())
+    if self.isRoundBorder{
+        let  angle: Double = 3*M_PI/2 + M_PI*3/10
+        path.addArcWithCenter(self.bounsCenter(), radius: self.outerRadius(), startAngle:CGFloat(angle) , endAngle: CGFloat(2*M_PI)+CGFloat(angle), clockwise: true)
+    }
+    return path;
+
+
+
+}
+
+
+}
+</code></pre><p>  代码地址<a href="https://github.com/menhui222/CheckControl" target="_blank" rel="external">https://github.com/menhui222/CheckControl</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://menhui222.github.io/2016/07/27/用CAShapeLayer-实现打钩动画轨迹效果/" data-id="cir4kk5ls0002zq07kocca5cl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-ios自带Emotion表情" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -91,7 +266,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://menhui222.github.io/2016/07/27/ios自带Emotion表情/" data-id="cir4j0fag0001hf07leipdftu" class="article-share-link">Partager</a>
+      <a data-url="http://menhui222.github.io/2016/07/27/ios自带Emotion表情/" data-id="cir4kk5lp0001zq07srcwp4kd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -318,7 +493,7 @@ else
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://menhui222.github.io/2016/03/30/七鱼客服/" data-id="cir4j0fai0002hf075fg22nnn" class="article-share-link">Partager</a>
+      <a data-url="http://menhui222.github.io/2016/03/30/七鱼客服/" data-id="cir4kk5lt0003zq07new4cfnf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -356,7 +531,7 @@ else
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://menhui222.github.io/2016/03/07/我的相关/" data-id="cir4j0fad0000hf07fgkp3wx9" class="article-share-link">Partager</a>
+      <a data-url="http://menhui222.github.io/2016/03/07/我的相关/" data-id="cir4kk5ll0000zq07dxcl078n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -391,9 +566,13 @@ else
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/07/27/用CAShapeLayer-实现打钩动画轨迹效果/">用CAShapeLayer 实现打钩动画轨迹效果</a>
+          </li>
         
           <li>
             <a href="/2016/07/27/ios自带Emotion表情/">ios自带Emotion表情</a>
@@ -420,7 +599,7 @@ else
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 menhui222<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
