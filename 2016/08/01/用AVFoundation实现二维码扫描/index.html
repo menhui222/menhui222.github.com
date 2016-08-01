@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>用AVFoundation实现二维码扫描 | menhui222&#39;blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="首先对AVFoundation的了解（指我的了解因为我能力有限所以可能有不到位的地方）AVFoundation是一个可以用来使用和创建基于时间的视听媒体的框架，例如：您可以用它来检查，创建，编辑或是重新编码媒体文件。也可以从设备中获取输入流，在视频实时播放时操作和回放。下图时AVFoundation在IOS中的架构。
+具体请看http://www.jianshu.com/p/cc79c45b4cc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用AVFoundation实现二维码扫描">
+<meta property="og:url" content="http://menhui222.github.io/2016/08/01/用AVFoundation实现二维码扫描/index.html">
+<meta property="og:site_name" content="menhui222'blog">
+<meta property="og:description" content="首先对AVFoundation的了解（指我的了解因为我能力有限所以可能有不到位的地方）AVFoundation是一个可以用来使用和创建基于时间的视听媒体的框架，例如：您可以用它来检查，创建，编辑或是重新编码媒体文件。也可以从设备中获取输入流，在视频实时播放时操作和回放。下图时AVFoundation在IOS中的架构。
+具体请看http://www.jianshu.com/p/cc79c45b4cc">
+<meta property="og:image" content="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Art/frameworksBlockDiagram_2x.png =220x250">
+<meta property="og:image" content="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Art/frameworksBlockDiagramOSX_2x.png =220x250">
+<meta property="og:updated_time" content="2016-08-01T09:19:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用AVFoundation实现二维码扫描">
+<meta name="twitter:description" content="首先对AVFoundation的了解（指我的了解因为我能力有限所以可能有不到位的地方）AVFoundation是一个可以用来使用和创建基于时间的视听媒体的框架，例如：您可以用它来检查，创建，编辑或是重新编码媒体文件。也可以从设备中获取输入流，在视频实时播放时操作和回放。下图时AVFoundation在IOS中的架构。
+具体请看http://www.jianshu.com/p/cc79c45b4cc">
+<meta name="twitter:image" content="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Art/frameworksBlockDiagram_2x.png =220x250">
+  
+    <link rel="alternate" href="/atom.xml" title="menhui222&#39;blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">menhui222&#39;blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://menhui222.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-用AVFoundation实现二维码扫描" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/01/用AVFoundation实现二维码扫描/" class="article-date">
+  <time datetime="2016-08-01T08:28:29.000Z" itemprop="datePublished">2016-08-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      用AVFoundation实现二维码扫描
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="首先对AVFoundation的了解（指我的了解因为我能力有限所以可能有不到位的地方）"><a href="#首先对AVFoundation的了解（指我的了解因为我能力有限所以可能有不到位的地方）" class="headerlink" title="首先对AVFoundation的了解（指我的了解因为我能力有限所以可能有不到位的地方）"></a>首先对AVFoundation的了解（指我的了解因为我能力有限所以可能有不到位的地方）</h4><p>AVFoundation是一个可以用来使用和创建基于时间的视听媒体的框架，例如：您可以用它来检查，创建，编辑或是重新编码媒体文件。也可以从设备中获取输入流，在视频实时播放时操作和回放。下图时AVFoundation在IOS中的架构。</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Art/frameworksBlockDiagram_2x.png =220x250" alt=""><br><img src="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Art/frameworksBlockDiagramOSX_2x.png =220x250" alt=""><br>具体请看<a href="http://www.jianshu.com/p/cc79c45b4ccf" target="_blank" rel="external">http://www.jianshu.com/p/cc79c45b4ccf</a></p>
+<p>为了熟悉AVFoundation 我自己写了二维码扫描<br>为了捕捉视频,我们需要这样几种类（与其它的子类）。</p>
+<ul>
+<li><p>AVCaptureDevice 代表了输入设备,例如摄像头与麦克风。</p>
+</li>
+<li><p>AVCaptureInput 代表了输入数据源</p>
+</li>
+<li><p>AVCaptureOutput 代表了输出数据源</p>
+</li>
+<li><p>AVCaptureSession 用于协调输入与输出之间的数据流</p>
+</li>
+</ul>
+<p>并且还有AVCaptureVideoPreviewLayer提供摄像头的预览功能</p>
+<p>1.创建AVCaputureSession。这个是对输出流合输入流的处理</p>
+<p>2.创建AVCaptureDevice。  这个是获取输入的设备</p>
+<pre><code> /*!
+ @method defaultDeviceWithMediaType:
+ @abstract
+    Returns an AVCaptureDevice instance for the default device of the given media type.
+
+ @param mediaType
+    The media type, such as AVMediaTypeVideo, AVMediaTypeAudio, or AVMediaTypeMuxed, supported by the returned device.
+ @result
+    The default device with the given media type, or nil if no device with that media type exists.
+
+ @discussion
+    This method returns the default device of the given media type currently available on the system. For example, for
+    AVMediaTypeVideo, this method will return the built in camera that is primarily used for capture and recording.
+    Media type constants are defined in AVMediaFormat.h.
+*/
+public class func defaultDeviceWithMediaType(mediaType: String!) -&gt; AVCaptureDevice!
+</code></pre><p>3.创建AVCaptureDeviceInput,添加到session</p>
+<pre><code>do {
+     //输入流
+     let  input = try AVCaptureDeviceInput(device: device)
+     session.addInput(input)
+ }catch{
+     print(&quot;相机不可以&quot;)
+ }
+</code></pre><p>4.创建AVCaptureOutput，并设置代理，添加到session</p>
+<pre><code>let output = AVCaptureMetadataOutput()
+output.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
+output.setMetadataObjectsDelegate(self, queue:dispatch_get_main_queue() )
+session.canSetSessionPreset(AVCaptureSessionPresetHigh)
+session.addOutput(output)
+</code></pre><p>代码：</p>
+<pre><code>//流的处理 （输出，输入）
+                let session = AVCaptureSession()
+                //获取设备//摄像头和麦克风
+
+                let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+                do {
+                    //输入流
+                    let  input = try AVCaptureDeviceInput(device: device)
+                    session.addInput(input)
+                }catch{
+                     let alertvc = UIAlertController(title: &quot;温馨提示&quot;, message: &quot;请在iPhone的\&quot;设置-隐私-相机\&quot;选项中,允许本程序访问您的相机&quot;, preferredStyle:UIAlertControllerStyle.Alert)
+                    let certain = UIAlertAction(title: &quot;确定&quot;, style: UIAlertActionStyle.Default, handler: { (_) in
+                        guard let url = NSURL(string:UIApplicationOpenSettingsURLString) else {return}
+
+                        if UIApplication.sharedApplication().canOpenURL(url) {
+                            UIApplication.sharedApplication().openURL(url)
+                        }
+
+
+
+                    })
+                    let cancel = UIAlertAction(title: &quot;取消&quot;, style: UIAlertActionStyle.Cancel, handler: { (_) in
+
+                    })
+                    alertvc.addAction(cancel)
+                    alertvc.addAction(certain)
+                    return
+
+                }
+                //在生成拍摄回话时原来直接设置的是最高清画质，但对于ipod 5这类低配设备是不支持的，故在此我采取了下面这种方式来设置画质。
+
+
+                //session.sessionPreset = AVCaptureSessionPreset1920x1080;//设置图像输出质量
+
+
+                // 输出流 代理回调
+                let output = AVCaptureMetadataOutput()
+
+
+
+                session.canSetSessionPreset(AVCaptureSessionPresetHigh)
+                session.addOutput(output)
+                output.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
+                output.setMetadataObjectsDelegate(self, queue:dispatch_get_main_queue() )
+                let previewLayer = AVCaptureVideoPreviewLayer(session:session)
+                previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+
+                previewLayer.frame = CGRectMake(0, 0, kScreen_width, kScreen_height)
+
+                let rect = CGRectMake((kScreen_width - 250) / 2.0, (kScreen_height - 250 - 72)/2.0, 250.0, 250.0);
+                print(rect)
+                //let rectOfInterest = previewLayer.metadataOutputRectOfInterestForRect(rect)
+                let rectOfInterest = CGRectMake(rect.origin.y/kScreen_height, rect.origin.x/kScreen_width,  rect.size.height/kScreen_height,rect.size.width/kScreen_width)
+                print(rectOfInterest)
+                output.rectOfInterest = rectOfInterest
+                self.view.layer.addSublayer(previewLayer)
+                //执行
+                session.startRunning()
+  var maskY:CGFloat = 0.0
+    if (self.navigationController != nil){
+        maskY = 64.0
+    }
+
+    let maskView = UIView(frame:CGRectMake(0, maskY, kScreen_width, kScreen_height - maskY))
+    maskView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
+    self.view.addSubview(maskView)
+
+    let rectPath = UIBezierPath(rect:CGRectMake(0, 0, kScreen_width, kScreen_height))
+    //    [rectPath appendPath:[[UIBezierPath bezierPathWithRect:CM((SCREEN_WIDTH - 250) / 2, 66, 250, 250)] bezierPathByReversingPath]];
+    let roundedRect = UIBezierPath(roundedRect:CGRectMake((kScreen_width - 250) / 2, (kScreen_height - 250 - 72)/2 - maskY, 250, 250),cornerRadius:1.0)
+    rectPath.appendPath(roundedRect.bezierPathByReversingPath())
+
+    let shapeLayer = CAShapeLayer()
+    shapeLayer.path = rectPath.CGPath;
+
+    maskView.layer.mask = shapeLayer;
+
+    let scanAreaImageView = UIImageView(frame:rect)
+
+    scanAreaImageView.layer.cornerRadius = 2
+    scanAreaImageView.layer.borderColor = UIColor.orangeColor().CGColor
+    scanAreaImageView.layer.borderWidth = 1
+    self.view.addSubview(scanAreaImageView)
+
+
+
+
+
+
+
+
+   extension QRCatchViewControll:AVCaptureMetadataOutputObjectsDelegate{
+
+func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!){
+
+    if metadataObjects.count &lt;= 0{
+        print(&quot;metadataObjects.count\(metadataObjects.count)&quot;)
+        return
+    }
+
+    for  metadataObject  in metadataObjects {
+        guard let qrcodeTypeObject = metadataObject as? AVMetadataMachineReadableCodeObject else{return}
+        if qrcodeTypeObject.type == AVMetadataObjectTypeQRCode {
+            print(qrcodeTypeObject.stringValue)
+        }else{
+            print(qrcodeTypeObject.stringValue)
+
+        }
+
+    }
+
+
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://menhui222.github.io/2016/08/01/用AVFoundation实现二维码扫描/" data-id="cirbtrhke0002sr070tdijsh9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/07/27/用CAShapeLayer-实现打钩动画轨迹效果/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">用CAShapeLayer 实现打钩动画轨迹效果</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/01/用AVFoundation实现二维码扫描/">用AVFoundation实现二维码扫描</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/27/用CAShapeLayer-实现打钩动画轨迹效果/">用CAShapeLayer 实现打钩动画轨迹效果</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/27/ios自带Emotion表情/">ios自带Emotion表情</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/30/七鱼客服/">七鱼客服</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/07/我的相关/">我的相关</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 menhui222<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
