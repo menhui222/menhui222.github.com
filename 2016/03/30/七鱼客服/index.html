@@ -1,284 +1,180 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
+    <title>七鱼客服 | menhui222&#39;blog</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="导语：写这个文章首先是我刚建立用git来管理blog为了试试，但是我这样的新手感觉没东西可写，就最近集成了七鱼客服来写写 其实七鱼客服文档已经比较详细，文档地址http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html 我当然也加了自己在集成过程中遇到的一些的小东西，不过这些你也可以联系客服他们也很有耐心给你解决的，而且效率也是杠杠的 0.0  不过看我">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="七鱼客服 | menhui222&#39;blog">
+    <meta name="twitter:description" content="导语：写这个文章首先是我刚建立用git来管理blog为了试试，但是我这样的新手感觉没东西可写，就最近集成了七鱼客服来写写 其实七鱼客服文档已经比较详细，文档地址http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html 我当然也加了自己在集成过程中遇到的一些的小东西，不过这些你也可以联系客服他们也很有耐心给你解决的，而且效率也是杠杠的 0.0  不过看我">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="七鱼客服 | menhui222&#39;blog">
+    <meta property="og:description" content="导语：写这个文章首先是我刚建立用git来管理blog为了试试，但是我这样的新手感觉没东西可写，就最近集成了七鱼客服来写写 其实七鱼客服文档已经比较详细，文档地址http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html 我当然也加了自己在集成过程中遇到的一些的小东西，不过这些你也可以联系客服他们也很有耐心给你解决的，而且效率也是杠杠的 0.0  不过看我">
+
     
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+    <meta name="author" content="menhui222">
     
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
+    <link rel="icon" href="/images/avatar-small.png">
+    
 
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="menhui222&#39;blog" href="/atom.xml">
+    
 
+    <link rel="canonical" href="http://menhui222.github.io/2016/03/30/七鱼客服/"/>
 
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
-
-
-
-
-
-
-<meta name="description" content="导语：写这个文章首先是我刚建立用git来管理blog为了试试，但是我这样的新手感觉没东西可写，就最近集成了七鱼客服来写写 其实七鱼客服文档已经比较详细，文档地址http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html 我当然也加了自己在集成过程中遇到的一些的小东西，不过这些你也可以联系客服他们也很有耐心给你解决的，而且效率也是杠杠的 0.0  不过看我">
-<meta property="og:type" content="article">
-<meta property="og:title" content="七鱼客服">
-<meta property="og:url" content="http://menhui222.github.io/2016/03/30/七鱼客服/index.html">
-<meta property="og:site_name" content="menhui222'blog">
-<meta property="og:description" content="导语：写这个文章首先是我刚建立用git来管理blog为了试试，但是我这样的新手感觉没东西可写，就最近集成了七鱼客服来写写 其实七鱼客服文档已经比较详细，文档地址http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html 我当然也加了自己在集成过程中遇到的一些的小东西，不过这些你也可以联系客服他们也很有耐心给你解决的，而且效率也是杠杠的 0.0  不过看我">
-<meta property="og:image" content="https://github.com/menhui222/BLOG_Image/blob/master/mh_1.png?raw=true">
-<meta property="og:updated_time" content="2016-07-27T03:51:02.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="七鱼客服">
-<meta name="twitter:description" content="导语：写这个文章首先是我刚建立用git来管理blog为了试试，但是我这样的新手感觉没东西可写，就最近集成了七鱼客服来写写 其实七鱼客服文档已经比较详细，文档地址http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html 我当然也加了自己在集成过程中遇到的一些的小东西，不过这些你也可以联系客服他们也很有耐心给你解决的，而且效率也是杠杠的 0.0  不过看我">
-<meta name="twitter:image" content="https://github.com/menhui222/BLOG_Image/blob/master/mh_1.png?raw=true">
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: '博主'
-    }
-  };
-</script>
-
-
-
-
-  <link rel="canonical" href="http://menhui222.github.io/2016/03/30/七鱼客服/"/>
-
-  <title> 七鱼客服 | menhui222'blog </title>
+    
+      
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body class="home-template no-js">
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
 
-  
-
-
-
-
-
-
-
-
-
-
-  
-  
     
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 menhui222&#39;blog 的主页"><img src="/images/avatar.jpg" width="80" alt="menhui222&#39;blog logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for menhui222&#39;blog">menhui222&#39;blog</a></h1>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description"></p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+              <li class="navigation__item"><a href="/favourite">黄金屋</a></li>
+            
+              <li class="navigation__item"><a href="/favourite/time.html">时光机</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
   
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">menhui222'blog</span>
-      <span class="logo-line-after"><i></i></span>
+  <li class="navigation__item">
+    <a href="http://weibo.com/2415625901/profile?topnav=1&amp;wvr=6&amp;is_all=1" title="我的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
     </a>
-  </div>
-  <p class="site-subtitle"></p>
-</div>
+  </li> 
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
 
-<nav class="site-nav">
+  <!-- Github -->
   
+  <li class="navigation__item">
+    <a href="https://github.com/menhui222" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
 
-  
-    <ul id="menu" class="menu">
-      
+
+<!-- Stack Overflow -->
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
+        <li class="navigation__item">
+            <a href="http://stackoverflow.com/users/6033515/menhui222" title="Stack Overflow" target="_blank">
+                <i class='social fa fa-stack-overflow'></i>
+                <span class="label">Stack Overflow</span>
+            </a>
         </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
 
-      
-    </ul>
+  <!-- Google Plus -->
   
 
+<!-- Facebook -->
+
+  <li class="navigation__item">
+    <a href="https://www.facebook.com/profile.php?id=100011001675058" title="上Facebook找我" target="_blank">
+      <i class='social fa fa-facebook'></i>
+      <span class="label">Facebook</span>
+    </a>
+  </li>
+
   
+<!-- Twitter -->
+
+  <li class="navigation__item">
+    <a href="https://twitter.com/Menhui222Hui" title="上Twitter找我" target="_blank">
+      <i class='social fa fa-twitter'></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
 </nav>
 
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                七鱼客服
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-30T11:49:56+08:00" content="2016-03-30">
-              2016-03-30
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
 
+      </div>
 
-    <div class="post-body" itemprop="articleBody">
+    </div>
 
-      
-      
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div>
+</header>
 
-      
-        <p> 导语：写这个文章首先是我刚建立用git来管理blog为了试试，但是我这样的新手感觉没东西可写，就最近集成了七鱼客服来写写 其实七鱼客服文档已经比较详细，文档地址<a href="http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html" target="_blank" rel="external">http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html</a> 我当然也加了自己在集成过程中遇到的一些的小东西，不过这些你也可以联系客服他们也很有耐心给你解决的，而且效率也是杠杠的 0.0  不过看我也希望我写的东西给大家带来方便。</p>
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-03-30T03:49:56.000Z" class="post-list__meta--date date">2016-03-30</time> &#8226; <span class="post-meta__tags tags">于&nbsp; </span>
+      <span class="page-pv">
+      &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">七鱼客服</h1>
+  </header>
+
+  <section class="post">
+    <p> 导语：写这个文章首先是我刚建立用git来管理blog为了试试，但是我这样的新手感觉没东西可写，就最近集成了七鱼客服来写写 其实七鱼客服文档已经比较详细，文档地址<a href="http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html" target="_blank" rel="external">http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html</a> 我当然也加了自己在集成过程中遇到的一些的小东西，不过这些你也可以联系客服他们也很有耐心给你解决的，而且效率也是杠杠的 0.0  不过看我也希望我写的东西给大家带来方便。</p>
 <h4 id="一-集成SDK"><a href="#一-集成SDK" class="headerlink" title="一.集成SDK"></a>一.集成SDK</h4><h5 id="1-下载-QY-SDK，得到一个-a-文件、QYResouce-文件夹和-ExportHeaders-文件夹，将他们导入工程"><a href="#1-下载-QY-SDK，得到一个-a-文件、QYResouce-文件夹和-ExportHeaders-文件夹，将他们导入工程" class="headerlink" title="1.下载 QY SDK，得到一个 .a 文件、QYResouce 文件夹和 ExportHeaders 文件夹，将他们导入工程"></a>1.下载 QY SDK，得到一个 .a 文件、QYResouce 文件夹和 ExportHeaders 文件夹，将他们导入工程</h5><p>下载sdk地址<a href="http://nos.netease.com/ysf/QIYU_iOS_SDK_v1.2.1.zip" target="_blank" rel="external">http://nos.netease.com/ysf/QIYU_iOS_SDK_v1.2.1.zip</a></p>
 <h5 id="2-添加-QY-SDK-依赖库"><a href="#2-添加-QY-SDK-依赖库" class="headerlink" title="2. 添加 QY SDK 依赖库"></a>2. 添加 QY SDK 依赖库</h5><ul>
 <li><p>MobileCoreService.framework</p>
@@ -470,276 +366,94 @@ else
 <li>解决：工程里使用的ZXing的二维码识别类库中，有bitcount的符号，而SDK由于支持bitCode所以产生了bit_cnt的符号，编译后造成冲突，解决方法就是把ZXing文件中的叫bitcount的改下名字就可以了  全局搜bitcount 改个名字的 如wk_bitcount<br>还有些问题我在 上面陈述的时候也提到了 我遇到的问题，也希望能帮到你0.0</li>
 </ul>
 
-      
-    </div>
+  </section>
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/03/07/我的相关/" rel="next" title="我的相关">
-                <i class="fa fa-chevron-left"></i> 我的相关
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/27/ios自带Emotion表情/" rel="prev" title="ios自带Emotion表情">
-                ios自带Emotion表情 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
+</article>
+<section class="read-more">
+           
     
-  </div>
-
-
-        </div>
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">最近的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2016/07/27/ios自带Emotion表情/" title="ios自带Emotion表情">ios自带Emotion表情</a></h2>
+                <p class="excerpt">
+                
+                ##iOS 自定义emoji表情键盘
+####首先 ，想要获取系统的表情，要首先知道表情对应的UTF8 的编码方式    //将数字转为    func  EMOJI_CODE_TO_SYMBOL(x:Int)-&amp;gt; Int {    return ((((0x808080F0 | (x &amp;am
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2016-07-27T05:45:15.000Z" class="post-list__meta--date date">2016-07-27</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/07/27/ios自带Emotion表情/">继续阅读</a></div>
+                           
+            </div>
         
-          
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2016/03/07/我的相关/" title="我的相关">我的相关</a></h2>
+                <p class="excerpt">
+                
+                ##新浪微博
+##github
+
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2016-03-07T03:47:29.000Z" class="post-list__meta--date date">2016-03-07</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/03/07/我的相关/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
+</section>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars3.githubusercontent.com/u/12657294?v=3&s=460"
-               alt="menhui222" />
-          <p class="site-author-name" itemprop="name">menhui222</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+            
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2016 - 本站由 <a href="/">@Monniya</a> 创建,
+        使用 <a href="https://github.com/monniya/hexo-theme-new-vno ">hexo-theme-new-vno</a> 主题,
+        修改自 <a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">Vno</a>, 原创出自<a href="http://github.com/onevcat/vno" target="_blank">onevcat</a>
+    </span>
+</footer>
         </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">5</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        
-        
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-集成SDK"><span class="nav-number">1.</span> <span class="nav-text">一.集成SDK</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-下载-QY-SDK，得到一个-a-文件、QYResouce-文件夹和-ExportHeaders-文件夹，将他们导入工程"><span class="nav-number">1.1.</span> <span class="nav-text">1.下载 QY SDK，得到一个 .a 文件、QYResouce 文件夹和 ExportHeaders 文件夹，将他们导入工程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-添加-QY-SDK-依赖库"><span class="nav-number">1.2.</span> <span class="nav-text">2. 添加 QY SDK 依赖库</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-在-Other-Linker-Flags-中添加-ObjC"><span class="nav-number">1.2.1.</span> <span class="nav-text">3.在 Other Linker Flags 中添加 -ObjC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-SDK-类讲解"><span class="nav-number">2.</span> <span class="nav-text">二.SDK 类讲解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-我遇到的问题"><span class="nav-number">3.</span> <span class="nav-text">三.我遇到的问题</span></a></li></ol></div>
-            
-          </div>
-        </section>
-      
-
     </div>
-  </aside>
 
+    
 
-        
-      </div>
-    </main>
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">menhui222</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+	ga('create', 'UA-78918255-1', 'auto');
+	ga('send', 'pageview');
 </script>
 
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?9cdad07c755fa23f6aced510c6760e87";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 
 
 
-
-
-
-
-
-  
-
-
-
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-  
-  
-
-  
-
-  
-
-  
-
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    
+    </script>
+    
 </body>
 </html>
