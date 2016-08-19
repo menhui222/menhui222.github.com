@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://menhui222.github.io/"/>
-  <updated>2016-08-18T06:53:42.000Z</updated>
+  <updated>2016-08-19T09:34:32.000Z</updated>
   <id>http://menhui222.github.io/</id>
   
   <author>
@@ -14,6 +14,114 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RXSWift-RxAlamofire 的使用和封装</title>
+    <link href="http://menhui222.github.io/2016/08/19/RXSWift-RxAlamofire-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%B0%81%E8%A3%85/"/>
+    <id>http://menhui222.github.io/2016/08/19/RXSWift-RxAlamofire-的使用和封装/</id>
+    <published>2016-08-19T08:49:42.000Z</published>
+    <updated>2016-08-19T09:34:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="RXSWift-RxAlamofire-的使用和封装"><a href="#RXSWift-RxAlamofire-的使用和封装" class="headerlink" title="RXSWift-RxAlamofire 的使用和封装"></a>RXSWift-RxAlamofire 的使用和封装</h4><p>######首先对RxAlamofire的介绍 ：RxAlamofire是包装优雅的HTTP网络迅速Alamofire的RxSwift的扩展版。<br>1.介绍RxAlamofire github的readme提供的几种方法具体不展开 请自己看<a href="https://github.com/RxSwiftCommunity/RxAlamofire" target="_blank" rel="external">https://github.com/RxSwiftCommunity/RxAlamofire</a></p>
+<p>2.自己工程的请求</p>
+<p>   1.对返回格式的规范 因为如果请求错误或者失败不能信号发送error </p>
+<pre><code>  enum Result&lt;T&gt;  {
+    case Success(T)
+    case Failure(ErrorType)
+}
+
+enum FailureType:ErrorType {
+    case Failed(message: String,code:Int)
+
+    var message : String{
+        if case  .Failed(let m, _) = self{
+            return m
+        }else{
+            return &quot;&quot;
+        }
+    }
+}
+</code></pre><p> 2.这个请求单列</p>
+<pre><code>    class Network {
+
+    static var shareIntance = Network()
+    var  token: String?{
+        return &quot;&quot; //去用户取 UserDetail?.token
+    }
+    private init(){
+
+    }
+
+    func rx_request(method: Alamofire.Method,
+                      _ URLString: URLStringConvertible,
+                        parameters: [String: AnyObject]? = nil,
+                        encoding: ParameterEncoding = .URL,
+                        headers: [String: String]? = nil) -&gt; Observable&lt;Request&gt;{
+        //加token
+
+//       parameters[&quot;token&quot;] = self.token
+        var  parame:Dictionary&lt;String,AnyObject&gt;? = nil
+        if (self.token != nil){
+
+            parame = [&quot;token&quot;:self.token!]
+        }else{
+            parame = parameters
+        }
+
+
+        //加header  自己加
+
+
+        return Manager.sharedInstance.rx_request(method, URLString, parameters: parame, encoding: encoding, headers: headers)
+
+    }
+}
+</code></pre><p>3.正在的发出请求</p>
+<pre><code>  extension Observable where Element :Request {
+
+
+    func rx_responseJSON()-&gt; Observable&lt;Result&lt;JSON&gt;&gt; {
+        func anonymousErrorCatch(result:String?) throws -&gt; JSON{
+            guard let result = result else{
+                throw FailureType.Failed(message: &quot;返回数据为空&quot;, code: -1)
+
+            }
+            return JSON(result)
+        }
+
+        return self.flatMap { (request) -&gt; Observable&lt;Result&lt;JSON&gt;&gt; in
+            let validatedRequest = request
+                .validate(statusCode: 200 ..&lt; 300)
+
+            let stringPart = validatedRequest
+                .rx_string()
+                .map { d -&gt; Result&lt;JSON&gt; in
+                    do{
+                    let json = try anonymousErrorCatch(d)
+                        return Result.Success(json)
+                    }catch{
+                        return Result.Failure(error)
+                    }
+
+                }
+
+            return stringPart
+
+        }
+
+    }
+}
+</code></pre><p>包着边研究边学习的看了RxAlamofire，我感觉也有人自己对Alamofire进行RxSwift的扩展 但是我感觉应该这个是最好的 值得一看 对你用RxSwift 自己去扩展一些自己的库或者别人没写的苦进行扩展 还有对RxSwift的学习有很大帮助</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;RXSWift-RxAlamofire-的使用和封装&quot;&gt;&lt;a href=&quot;#RXSWift-RxAlamofire-的使用和封装&quot; class=&quot;headerlink&quot; title=&quot;RXSWift-RxAlamofire 的使用和封装&quot;&gt;&lt;/a&gt;RXSWift-
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>用AVFoundation实现二维码扫描</title>
