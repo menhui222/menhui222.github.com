@@ -693,6 +693,52 @@ else
   </entry>
   
   <entry>
+    <title>PromiseKit对Alamofire的扩展</title>
+    <link href="http://menhui222.github.io/2016/03/19/PromiseKit%E5%AF%B9Alamofire%E7%9A%84%E6%89%A9%E5%B1%95/"/>
+    <id>http://menhui222.github.io/2016/03/19/PromiseKit对Alamofire的扩展/</id>
+    <published>2016-03-19T09:43:46.000Z</published>
+    <updated>2016-08-19T09:49:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>由于开发中遇到很多接口的逻辑关系  在第一届swift大会上也有提到用PromiseKit进行对接口的处理所以我试着写了下效果如下</p>
+<h6 id="单个请求"><a href="#单个请求" class="headerlink" title="单个请求"></a>单个请求</h6><pre><code>RequestGithub(&quot;menhui222&quot;).responseWK(WKGitHubUser).then ({ user in
+
+       print(user.login)
+   }).error { (err) in
+       print(err)
+   }
+</code></pre><h6 id="请求并行"><a href="#请求并行" class="headerlink" title="请求并行"></a>请求并行</h6><pre><code>let request1 = RequestGithub(&quot;menhui222&quot;).responseWK(WKGitHubUser)
+let request2 = RequestGithub(&quot;FengDeng&quot;).responseWK(WKGitHubUser)
+ // 2个请求都成功 才返回
+when(request1,request2).then ({ (user1, user2)  in
+    print(user1.login)
+    print(user2.login)
+}).error { (error) in
+    print(error)
+        }
+</code></pre><h6 id="请求嵌套"><a href="#请求嵌套" class="headerlink" title="请求嵌套"></a>请求嵌套</h6><pre><code>//1成功 执行2
+self.requestGithub1().then ({ user -&gt; Promise&lt;WKGitHubUser&gt; in
+
+return self.requestGithub2()
+
+}).then ({ user  in
+
+}).error { error in
+
+}
+</code></pre><p>  代码地址<a href="https://github.com/menhui222/PromiseTest" target="_blank" rel="external">https://github.com/menhui222/PromiseTest</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;由于开发中遇到很多接口的逻辑关系  在第一届swift大会上也有提到用PromiseKit进行对接口的处理所以我试着写了下效果如下&lt;/p&gt;
+&lt;h6 id=&quot;单个请求&quot;&gt;&lt;a href=&quot;#单个请求&quot; class=&quot;headerlink&quot; title=&quot;单个请求&quot;&gt;&lt;/a&gt;单
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>我的相关</title>
     <link href="http://menhui222.github.io/2016/03/07/%E6%88%91%E7%9A%84%E7%9B%B8%E5%85%B3/"/>
     <id>http://menhui222.github.io/2016/03/07/我的相关/</id>
