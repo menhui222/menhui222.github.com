@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://menhui222.github.io/"/>
-  <updated>2016-09-09T08:11:18.000Z</updated>
+  <updated>2016-09-09T08:13:38.000Z</updated>
   <id>http://menhui222.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://menhui222.github.io/2016/09/09/Swift%E4%B8%AD%E6%9F%AF%E9%87%8C%E5%8C%96/"/>
     <id>http://menhui222.github.io/2016/09/09/Swift中柯里化/</id>
     <published>2016-09-09T07:27:04.000Z</published>
-    <updated>2016-09-09T08:11:18.000Z</updated>
+    <updated>2016-09-09T08:13:38.000Z</updated>
     
     <content type="html"><![CDATA[<p>####Swift中的柯里化<br>   1.Swift 里可以将方法进行柯里化 (Currying)，这是也就是把接受多个参数的方法进行一些变形，使其更加灵活的方法。函数式的编程思想贯穿于 Swift 中，而函数的柯里化正是这门语言函数式特点的重要表现。curry 是 Swift 中一个很灵活的特性，用最简单的语言来说，curry 就是一个用方法生成方法的机制。它能让我们的方法定义更加动态化，甚至对于系统内置的方法，都可以通过 curry 的方法进行整合。我最先是在王巍的swift tip中看到的<a href="http://swifter.tips/currying/" target="_blank" rel="external">http://swifter.tips/currying/</a> 最近在看<a href="https://github.com/thoughtbot/Argo" target="_blank" rel="external">Argo</a>解析的列子中有使用</p>
 <p>   2.举个例子 </p>
@@ -53,7 +53,7 @@ return { a in
 </code></pre><p>   调用</p>
 <pre><code>let curriedMultiple = curry(multiple)
 curriedMultiple(3)(3) //9
-</code></pre><p>   我在github有对curry封装的第三方<a href="https://github.com/thoughtbot/Curry" target="_blank" rel="external">https://github.com/thoughtbot/Curry</a></p>
+</code></pre><p>   在github有对curry封装的第三方<a href="https://github.com/thoughtbot/Curry" target="_blank" rel="external">https://github.com/thoughtbot/Curry</a></p>
 <p>   工程导入这个库 还有这个库支持多参数</p>
 <pre><code> func multiple(left: Int, right:Int) -&gt; Int {
 
