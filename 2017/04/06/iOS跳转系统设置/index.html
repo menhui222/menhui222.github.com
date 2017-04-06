@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>PromiseKit对Alamofire的扩展 | menhui222</title>
+    <title>iOS跳转系统设置 | menhui222</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -12,27 +12,27 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta name="description" content="由于开发中遇到很多接口的逻辑关系  在第一届swift大会上也有提到用PromiseKit进行对接口的处理所以我试着写了下效果如下
-单个请求RequestGithub(&amp;quot;menhui222&amp;quot;).responseWK(WKGitHubUser).then ({ user in
+    <meta name="description" content="##iOS跳转系统设置
+#####跳转到APP的设置界面跳转事件
+&amp;apos;&amp;apos;&amp;apos; NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
 
-       print(user.login)
-   }).error { (err) in">
+        if([[UIApplication sharedApplication] canOpenURL:url]) {">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="PromiseKit对Alamofire的扩展 | menhui222">
-    <meta name="twitter:description" content="由于开发中遇到很多接口的逻辑关系  在第一届swift大会上也有提到用PromiseKit进行对接口的处理所以我试着写了下效果如下
-单个请求RequestGithub(&amp;quot;menhui222&amp;quot;).responseWK(WKGitHubUser).then ({ user in
+    <meta name="twitter:title" content="iOS跳转系统设置 | menhui222">
+    <meta name="twitter:description" content="##iOS跳转系统设置
+#####跳转到APP的设置界面跳转事件
+&amp;apos;&amp;apos;&amp;apos; NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
 
-       print(user.login)
-   }).error { (err) in">
+        if([[UIApplication sharedApplication] canOpenURL:url]) {">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="PromiseKit对Alamofire的扩展 | menhui222">
-    <meta property="og:description" content="由于开发中遇到很多接口的逻辑关系  在第一届swift大会上也有提到用PromiseKit进行对接口的处理所以我试着写了下效果如下
-单个请求RequestGithub(&amp;quot;menhui222&amp;quot;).responseWK(WKGitHubUser).then ({ user in
+    <meta property="og:title" content="iOS跳转系统设置 | menhui222">
+    <meta property="og:description" content="##iOS跳转系统设置
+#####跳转到APP的设置界面跳转事件
+&amp;apos;&amp;apos;&amp;apos; NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
 
-       print(user.login)
-   }).error { (err) in">
+        if([[UIApplication sharedApplication] canOpenURL:url]) {">
 
     
     <meta name="author" content="menhui222">
@@ -49,7 +49,7 @@
     <link rel="alternate" type="application/rss+xml" title="menhui222" href="/atom.xml">
     
 
-    <link rel="canonical" href="http://menhui222.github.io/2016/03/19/PromiseKit对Alamofire的扩展/"/>
+    <link rel="canonical" href="http://menhui222.github.io/2017/04/06/iOS跳转系统设置/"/>
 
     
       
@@ -172,43 +172,30 @@
 
   <header class="post-header">
     <div class="post-meta">
-      <time datetime="2016-03-19T09:43:46.000Z" class="post-list__meta--date date">2016-03-19</time> &#8226; <span class="post-meta__tags tags">于&nbsp; </span>
+      <time datetime="2017-04-06T01:33:41.000Z" class="post-list__meta--date date">2017-04-06</time> &#8226; <span class="post-meta__tags tags">于&nbsp; </span>
       <span class="page-pv">
       &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
       </span> 
    
     </div>
-    <h1 class="post-title">PromiseKit对Alamofire的扩展</h1>
+    <h1 class="post-title">iOS跳转系统设置</h1>
   </header>
 
   <section class="post">
-    <p>由于开发中遇到很多接口的逻辑关系  在第一届swift大会上也有提到用PromiseKit进行对接口的处理所以我试着写了下效果如下</p>
-<h6 id="单个请求"><a href="#单个请求" class="headerlink" title="单个请求"></a>单个请求</h6><pre><code>RequestGithub(&quot;menhui222&quot;).responseWK(WKGitHubUser).then ({ user in
+    <p>##iOS跳转系统设置</p>
+<p>#####跳转到APP的设置界面<br>跳转事件</p>
+<pre><code>&apos;&apos;&apos; NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
 
-       print(user.login)
-   }).error { (err) in
-       print(err)
-   }
-</code></pre><h6 id="请求并行"><a href="#请求并行" class="headerlink" title="请求并行"></a>请求并行</h6><pre><code>let request1 = RequestGithub(&quot;menhui222&quot;).responseWK(WKGitHubUser)
-let request2 = RequestGithub(&quot;FengDeng&quot;).responseWK(WKGitHubUser)
- // 2个请求都成功 才返回
-when(request1,request2).then ({ (user1, user2)  in
-    print(user1.login)
-    print(user2.login)
-}).error { (error) in
-    print(error)
-        }
-</code></pre><h6 id="请求嵌套"><a href="#请求嵌套" class="headerlink" title="请求嵌套"></a>请求嵌套</h6><pre><code>//1成功 执行2
-self.requestGithub1().then ({ user -&gt; Promise&lt;WKGitHubUser&gt; in
+        if([[UIApplication sharedApplication] canOpenURL:url]) {
 
-return self.requestGithub2()
+            NSURL *url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
 
-}).then ({ user  in
+            [[UIApplication sharedApplication] openURL:url];
 
-}).error { error in
-
-}
-</code></pre><p>  代码地址<a href="https://github.com/menhui222/PromiseTest" target="_blank" rel="external">https://github.com/menhui222/PromiseTest</a></p>
+        }&apos;&apos;&apos;
+</code></pre><p>####跳转到系统设置的其他界面以wifi为例<br>1.在info.plist中URL Types添加   URL Schemes 为 prefs  也可以TARGETS中选择info 在URL Types添加<br>2.跳转代码</p>
+<pre><code>[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@&quot;prefs:root=WIFI
+</code></pre><p>####跳转到其他的界面的字段<br>    蜂窝网络：prefs:root=MOBILE_DATA_SETTINGS_ID<br>    VPN — prefs:root=General&amp;path=Network/VPN<br>    Wi-Fi：prefs:root=WIFI<br>    定位服务：prefs:root=LOCATION_SERVICES<br>    个人热点：prefs:root=INTERNET_TETHERING<br>    关于本机：prefs:root=General&amp;path=About<br>    辅助功能：prefs:root=General&amp;path=ACCESSIBILITY<br>    飞行模式：prefs:root=AIRPLANE_MODE<br>    锁定：prefs:root=General&amp;path=AUTOLOCK<br>    亮度：prefs:root=Brightness<br>    蓝牙：prefs:root=General&amp;path=Bluetooth<br>    时间设置：prefs:root=General&amp;path=DATE_AND_TIME<br>    FaceTime：prefs:root=FACETIME<br>    设置：prefs:root=General<br>    键盘设置：prefs:root=General&amp;path=Keyboard<br>    iCloud：prefs:root=CASTLE<br>    iCloud备份：prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUP<br>    语言：prefs:root=General&amp;path=INTERNATIONAL<br>    定位：prefs:root=LOCATION_SERVICES<br>    音乐：prefs:root=MUSIC<br>    Music Equalizer — prefs:root=MUSIC&amp;path=EQ<br>    Music Volume Limit — prefs:root=MUSIC&amp;path=VolumeLimit<br>    Network — prefs:root=General&amp;path=Network<br>    Nike + iPod — prefs:root=NIKE_PLUS_IPOD<br>    Notes — prefs:root=NOTES<br>    Notification — prefs:root=NOTIFICATIONS_ID<br>    Phone — prefs:root=Phone<br>    Photos — prefs:root=Photos<br>    Profile — prefs:root=General&amp;path=ManagedConfigurationList<br>    Reset — prefs:root=General&amp;path=Reset<br>    Safari — prefs:root=Safari<br>    Siri — prefs:root=General&amp;path=Assistant<br>    Sounds — prefs:root=Sounds<br>    Software Update — prefs:root=General&amp;path=SOFTWARE_UPDATE_LINK<br>    Store — prefs:root=STORE<br>    Twitter — prefs:root=TWITTER<br>    Usage — prefs:root=General&amp;path=USAGE<br>    Wallpaper — prefs:root=Wallpaper</p>
 
   </section>
 
@@ -216,32 +203,18 @@ return self.requestGithub2()
 <section class="read-more">
            
     
-               
-            <div class="read-more-item">
-                <span class="read-more-item-dim">最近的文章</span>
-                <h2 class="post-list__post-title post-title"><a href="/2016/03/30/七鱼客服/" title="七鱼客服">七鱼客服</a></h2>
-                <p class="excerpt">
-                
-                 导语：写这个文章首先是我刚建立用git来管理blog为了试试，但是我这样的新手感觉没东西可写，就最近集成了七鱼客服来写写 其实七鱼客服文档已经比较详细，文档地址http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html 我当然也加了自己在集成过程中遇到的一
-                &hellip;
-                </p>
-                <div class="post-list__meta"><time datetime="2016-03-30T03:49:56.000Z" class="post-list__meta--date date">2016-03-30</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/03/30/七鱼客服/">继续阅读</a></div>
-                           
-            </div>
         
         
                
             <div class="read-more-item">
                 <span class="read-more-item-dim">更早的文章</span>
-                <h2 class="post-list__post-title post-title"><a href="/2016/03/07/我的相关/" title="我的相关">我的相关</a></h2>
+                <h2 class="post-list__post-title post-title"><a href="/2016/09/09/Swift中柯里化/" title="Swift中柯里化">Swift中柯里化</a></h2>
                 <p class="excerpt">
                 
-                ##新浪微博
-##github
-
+                ####Swift中的柯里化   1.Swift 里可以将方法进行柯里化 (Currying)，这是也就是把接受多个参数的方法进行一些变形，使其更加灵活的方法。函数式的编程思想贯穿于 Swift 中，而函数的柯里化正是这门语言函数式特点的重要表现。curry 是 Swift 中一个很灵活的特性，用最
                 &hellip;
                 </p>
-                <div class="post-list__meta"><time datetime="2016-03-07T03:47:29.000Z" class="post-list__meta--date date">2016-03-07</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/03/07/我的相关/">继续阅读</a></div>
+                <div class="post-list__meta"><time datetime="2016-09-09T07:27:04.000Z" class="post-list__meta--date date">2016-09-09</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/09/09/Swift中柯里化/">继续阅读</a></div>
                        
             </div>
         
@@ -254,7 +227,7 @@ return self.requestGithub2()
             
 <section class="post-comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="http://menhui222.github.io/2016/03/19/PromiseKit对Alamofire的扩展/" data-title="PromiseKit对Alamofire的扩展" data-url="http://menhui222.github.io/2016/03/19/PromiseKit对Alamofire的扩展/"></div>
+  <div class="ds-thread" data-thread-key="http://menhui222.github.io/2017/04/06/iOS跳转系统设置/" data-title="iOS跳转系统设置" data-url="http://menhui222.github.io/2017/04/06/iOS跳转系统设置/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
   <script type="text/javascript">
