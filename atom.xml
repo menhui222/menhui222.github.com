@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://menhui222.github.io/"/>
-  <updated>2017-04-06T02:12:31.000Z</updated>
+  <updated>2017-04-06T08:11:24.000Z</updated>
   <id>http://menhui222.github.io/</id>
   
   <author>
@@ -20,29 +20,66 @@
     <link href="http://menhui222.github.io/2017/04/06/iOS%E8%B7%B3%E8%BD%AC%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE/"/>
     <id>http://menhui222.github.io/2017/04/06/iOS跳转系统设置/</id>
     <published>2017-04-06T01:33:41.000Z</published>
-    <updated>2017-04-06T02:12:31.000Z</updated>
+    <updated>2017-04-06T08:11:24.000Z</updated>
     
-    <content type="html"><![CDATA[<p>##iOS跳转系统设置</p>
-<p>#####跳转到APP的设置界面<br>跳转事件</p>
-<pre><code>&apos;&apos;&apos; NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    <content type="html"><![CDATA[<p>####跳转到APP的设置界面<br>跳转事件</p>
+<pre><code>NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
 
-        if([[UIApplication sharedApplication] canOpenURL:url]) {
+       if([[UIApplication sharedApplication] canOpenURL:url]) {
 
-            NSURL *url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
+           NSURL *url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
 
-            [[UIApplication sharedApplication] openURL:url];
+           [[UIApplication sharedApplication] openURL:url];
 
-        }&apos;&apos;&apos;
+       }
 </code></pre><p>####跳转到系统设置的其他界面以wifi为例<br>1.在info.plist中URL Types添加   URL Schemes 为 prefs  也可以TARGETS中选择info 在URL Types添加<br>2.跳转代码</p>
 <pre><code>[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@&quot;prefs:root=WIFI
-</code></pre><p>####跳转到其他的界面的字段<br>    蜂窝网络：prefs:root=MOBILE_DATA_SETTINGS_ID<br>    VPN — prefs:root=General&amp;path=Network/VPN<br>    Wi-Fi：prefs:root=WIFI<br>    定位服务：prefs:root=LOCATION_SERVICES<br>    个人热点：prefs:root=INTERNET_TETHERING<br>    关于本机：prefs:root=General&amp;path=About<br>    辅助功能：prefs:root=General&amp;path=ACCESSIBILITY<br>    飞行模式：prefs:root=AIRPLANE_MODE<br>    锁定：prefs:root=General&amp;path=AUTOLOCK<br>    亮度：prefs:root=Brightness<br>    蓝牙：prefs:root=General&amp;path=Bluetooth<br>    时间设置：prefs:root=General&amp;path=DATE_AND_TIME<br>    FaceTime：prefs:root=FACETIME<br>    设置：prefs:root=General<br>    键盘设置：prefs:root=General&amp;path=Keyboard<br>    iCloud：prefs:root=CASTLE<br>    iCloud备份：prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUP<br>    语言：prefs:root=General&amp;path=INTERNATIONAL<br>    定位：prefs:root=LOCATION_SERVICES<br>    音乐：prefs:root=MUSIC<br>    Music Equalizer — prefs:root=MUSIC&amp;path=EQ<br>    Music Volume Limit — prefs:root=MUSIC&amp;path=VolumeLimit<br>    Network — prefs:root=General&amp;path=Network<br>    Nike + iPod — prefs:root=NIKE_PLUS_IPOD<br>    Notes — prefs:root=NOTES<br>    Notification — prefs:root=NOTIFICATIONS_ID<br>    Phone — prefs:root=Phone<br>    Photos — prefs:root=Photos<br>    Profile — prefs:root=General&amp;path=ManagedConfigurationList<br>    Reset — prefs:root=General&amp;path=Reset<br>    Safari — prefs:root=Safari<br>    Siri — prefs:root=General&amp;path=Assistant<br>    Sounds — prefs:root=Sounds<br>    Software Update — prefs:root=General&amp;path=SOFTWARE_UPDATE_LINK<br>    Store — prefs:root=STORE<br>    Twitter — prefs:root=TWITTER<br>    Usage — prefs:root=General&amp;path=USAGE<br>    Wallpaper — prefs:root=Wallpaper</p>
-]]></content>
+</code></pre><h4 id="跳转到其他的界面的字段"><a href="#跳转到其他的界面的字段" class="headerlink" title="跳转到其他的界面的字段"></a>跳转到其他的界面的字段</h4><pre><code>蜂窝网络：prefs:root=MOBILE_DATA_SETTINGS_ID
+VPN — prefs:root=General&amp;path=Network/VPN
+Wi-Fi：prefs:root=WIFI
+定位服务：prefs:root=LOCATION_SERVICES
+个人热点：prefs:root=INTERNET_TETHERING
+关于本机：prefs:root=General&amp;path=About
+辅助功能：prefs:root=General&amp;path=ACCESSIBILITY
+飞行模式：prefs:root=AIRPLANE_MODE
+锁定：prefs:root=General&amp;path=AUTOLOCK
+亮度：prefs:root=Brightness
+蓝牙：prefs:root=General&amp;path=Bluetooth
+时间设置：prefs:root=General&amp;path=DATE_AND_TIME
+FaceTime：prefs:root=FACETIME
+设置：prefs:root=General
+键盘设置：prefs:root=General&amp;path=Keyboard
+iCloud：prefs:root=CASTLE
+iCloud备份：prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUP
+语言：prefs:root=General&amp;path=INTERNATIONAL
+定位：prefs:root=LOCATION_SERVICES
+音乐：prefs:root=MUSIC
+Music Equalizer — prefs:root=MUSIC&amp;path=EQ
+Music Volume Limit — prefs:root=MUSIC&amp;path=VolumeLimit
+Network — prefs:root=General&amp;path=Network
+Nike + iPod — prefs:root=NIKE_PLUS_IPOD
+Notes — prefs:root=NOTES
+Notification — prefs:root=NOTIFICATIONS_ID
+Phone — prefs:root=Phone
+Photos — prefs:root=Photos
+Profile — prefs:root=General&amp;path=ManagedConfigurationList
+Reset — prefs:root=General&amp;path=Reset
+Safari — prefs:root=Safari
+Siri — prefs:root=General&amp;path=Assistant
+Sounds — prefs:root=Sounds
+Software Update — prefs:root=General&amp;path=SOFTWARE_UPDATE_LINK
+Store — prefs:root=STORE
+Twitter — prefs:root=TWITTER
+Usage — prefs:root=General&amp;path=USAGE
+Wallpaper — prefs:root=Wallpaper
+</code></pre>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;##iOS跳转系统设置&lt;/p&gt;
-&lt;p&gt;#####跳转到APP的设置界面&lt;br&gt;跳转事件&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;apos;&amp;apos;&amp;apos; NSURL * url = [NSURL URLWithString:UIApplicationOpenSetting
+      &lt;p&gt;####跳转到APP的设置界面&lt;br&gt;跳转事件&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+
+       if([[UIApplication
     
     </summary>
     

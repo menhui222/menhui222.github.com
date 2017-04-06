@@ -12,27 +12,30 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta name="description" content="##iOS跳转系统设置
-#####跳转到APP的设置界面跳转事件
-&amp;apos;&amp;apos;&amp;apos; NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    <meta name="description" content="####跳转到APP的设置界面跳转事件
+NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
 
-        if([[UIApplication sharedApplication] canOpenURL:url]) {">
+       if([[UIApplication sharedApplication] canOpenURL:url]) {
+
+           NSURL *url =[NSURL URLWithStrin">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="iOS跳转系统设置 | menhui222">
-    <meta name="twitter:description" content="##iOS跳转系统设置
-#####跳转到APP的设置界面跳转事件
-&amp;apos;&amp;apos;&amp;apos; NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    <meta name="twitter:description" content="####跳转到APP的设置界面跳转事件
+NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
 
-        if([[UIApplication sharedApplication] canOpenURL:url]) {">
+       if([[UIApplication sharedApplication] canOpenURL:url]) {
+
+           NSURL *url =[NSURL URLWithStrin">
 
     <meta property="og:type" content="article">
     <meta property="og:title" content="iOS跳转系统设置 | menhui222">
-    <meta property="og:description" content="##iOS跳转系统设置
-#####跳转到APP的设置界面跳转事件
-&amp;apos;&amp;apos;&amp;apos; NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    <meta property="og:description" content="####跳转到APP的设置界面跳转事件
+NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
 
-        if([[UIApplication sharedApplication] canOpenURL:url]) {">
+       if([[UIApplication sharedApplication] canOpenURL:url]) {
+
+           NSURL *url =[NSURL URLWithStrin">
 
     
     <meta name="author" content="menhui222">
@@ -182,32 +185,66 @@
   </header>
 
   <section class="post">
-    <p>##iOS跳转系统设置</p>
-<p>#####跳转到APP的设置界面<br>跳转事件</p>
-<pre><code>&apos;&apos;&apos; NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    <p>####跳转到APP的设置界面<br>跳转事件</p>
+<pre><code>NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
 
-        if([[UIApplication sharedApplication] canOpenURL:url]) {
+       if([[UIApplication sharedApplication] canOpenURL:url]) {
 
-            NSURL *url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
+           NSURL *url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
 
-            [[UIApplication sharedApplication] openURL:url];
+           [[UIApplication sharedApplication] openURL:url];
 
-        }&apos;&apos;&apos;
+       }
 </code></pre><p>####跳转到系统设置的其他界面以wifi为例<br>1.在info.plist中URL Types添加   URL Schemes 为 prefs  也可以TARGETS中选择info 在URL Types添加<br>2.跳转代码</p>
 <pre><code>[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@&quot;prefs:root=WIFI
-</code></pre><p>####跳转到其他的界面的字段<br>    蜂窝网络：prefs:root=MOBILE_DATA_SETTINGS_ID<br>    VPN — prefs:root=General&amp;path=Network/VPN<br>    Wi-Fi：prefs:root=WIFI<br>    定位服务：prefs:root=LOCATION_SERVICES<br>    个人热点：prefs:root=INTERNET_TETHERING<br>    关于本机：prefs:root=General&amp;path=About<br>    辅助功能：prefs:root=General&amp;path=ACCESSIBILITY<br>    飞行模式：prefs:root=AIRPLANE_MODE<br>    锁定：prefs:root=General&amp;path=AUTOLOCK<br>    亮度：prefs:root=Brightness<br>    蓝牙：prefs:root=General&amp;path=Bluetooth<br>    时间设置：prefs:root=General&amp;path=DATE_AND_TIME<br>    FaceTime：prefs:root=FACETIME<br>    设置：prefs:root=General<br>    键盘设置：prefs:root=General&amp;path=Keyboard<br>    iCloud：prefs:root=CASTLE<br>    iCloud备份：prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUP<br>    语言：prefs:root=General&amp;path=INTERNATIONAL<br>    定位：prefs:root=LOCATION_SERVICES<br>    音乐：prefs:root=MUSIC<br>    Music Equalizer — prefs:root=MUSIC&amp;path=EQ<br>    Music Volume Limit — prefs:root=MUSIC&amp;path=VolumeLimit<br>    Network — prefs:root=General&amp;path=Network<br>    Nike + iPod — prefs:root=NIKE_PLUS_IPOD<br>    Notes — prefs:root=NOTES<br>    Notification — prefs:root=NOTIFICATIONS_ID<br>    Phone — prefs:root=Phone<br>    Photos — prefs:root=Photos<br>    Profile — prefs:root=General&amp;path=ManagedConfigurationList<br>    Reset — prefs:root=General&amp;path=Reset<br>    Safari — prefs:root=Safari<br>    Siri — prefs:root=General&amp;path=Assistant<br>    Sounds — prefs:root=Sounds<br>    Software Update — prefs:root=General&amp;path=SOFTWARE_UPDATE_LINK<br>    Store — prefs:root=STORE<br>    Twitter — prefs:root=TWITTER<br>    Usage — prefs:root=General&amp;path=USAGE<br>    Wallpaper — prefs:root=Wallpaper</p>
-
+</code></pre><h4 id="跳转到其他的界面的字段"><a href="#跳转到其他的界面的字段" class="headerlink" title="跳转到其他的界面的字段"></a>跳转到其他的界面的字段</h4><pre><code>蜂窝网络：prefs:root=MOBILE_DATA_SETTINGS_ID
+VPN — prefs:root=General&amp;path=Network/VPN
+Wi-Fi：prefs:root=WIFI
+定位服务：prefs:root=LOCATION_SERVICES
+个人热点：prefs:root=INTERNET_TETHERING
+关于本机：prefs:root=General&amp;path=About
+辅助功能：prefs:root=General&amp;path=ACCESSIBILITY
+飞行模式：prefs:root=AIRPLANE_MODE
+锁定：prefs:root=General&amp;path=AUTOLOCK
+亮度：prefs:root=Brightness
+蓝牙：prefs:root=General&amp;path=Bluetooth
+时间设置：prefs:root=General&amp;path=DATE_AND_TIME
+FaceTime：prefs:root=FACETIME
+设置：prefs:root=General
+键盘设置：prefs:root=General&amp;path=Keyboard
+iCloud：prefs:root=CASTLE
+iCloud备份：prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUP
+语言：prefs:root=General&amp;path=INTERNATIONAL
+定位：prefs:root=LOCATION_SERVICES
+音乐：prefs:root=MUSIC
+Music Equalizer — prefs:root=MUSIC&amp;path=EQ
+Music Volume Limit — prefs:root=MUSIC&amp;path=VolumeLimit
+Network — prefs:root=General&amp;path=Network
+Nike + iPod — prefs:root=NIKE_PLUS_IPOD
+Notes — prefs:root=NOTES
+Notification — prefs:root=NOTIFICATIONS_ID
+Phone — prefs:root=Phone
+Photos — prefs:root=Photos
+Profile — prefs:root=General&amp;path=ManagedConfigurationList
+Reset — prefs:root=General&amp;path=Reset
+Safari — prefs:root=Safari
+Siri — prefs:root=General&amp;path=Assistant
+Sounds — prefs:root=Sounds
+Software Update — prefs:root=General&amp;path=SOFTWARE_UPDATE_LINK
+Store — prefs:root=STORE
+Twitter — prefs:root=TWITTER
+Usage — prefs:root=General&amp;path=USAGE
+Wallpaper — prefs:root=Wallpaper
+</code></pre>
   </section>
 
 </article>
 <section class="read-more">
            
     
-        
-        
                
             <div class="read-more-item">
-                <span class="read-more-item-dim">更早的文章</span>
+                <span class="read-more-item-dim">最近的文章</span>
                 <h2 class="post-list__post-title post-title"><a href="/2016/09/09/Swift中柯里化/" title="Swift中柯里化">Swift中柯里化</a></h2>
                 <p class="excerpt">
                 
@@ -215,8 +252,10 @@
                 &hellip;
                 </p>
                 <div class="post-list__meta"><time datetime="2016-09-09T07:27:04.000Z" class="post-list__meta--date date">2016-09-09</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/09/09/Swift中柯里化/">继续阅读</a></div>
-                       
+                           
             </div>
+        
+        
         
      
    
