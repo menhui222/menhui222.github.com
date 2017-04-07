@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://menhui222.github.io/"/>
-  <updated>2017-04-06T08:11:24.000Z</updated>
+  <updated>2017-04-07T02:12:19.000Z</updated>
   <id>http://menhui222.github.io/</id>
   
   <author>
@@ -14,6 +14,90 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NSInvocation应用与理解</title>
+    <link href="http://menhui222.github.io/2017/04/07/NSInvocation%E5%BA%94%E7%94%A8%E4%B8%8E%E7%90%86%E8%A7%A3/"/>
+    <id>http://menhui222.github.io/2017/04/07/NSInvocation应用与理解/</id>
+    <published>2017-04-07T01:47:57.000Z</published>
+    <updated>2017-04-07T02:12:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>####叙述<br>iOS中可以直接调用某个对象的消息方式有2中，1.通过performSelector:withObject:函数可以直接调用这个消息。但是perform相关的这些函数，有一个局限性，其参数数量不能超过2个，否则要做很麻烦的处理，2.NSInvocation也是一种消息调用的方法，并且它的参数没有限制。这两种直接调用对象消息的方法，在iOS4.0之后，大多被block结构所取代，只有在很老的兼容性系统中才会使用，简单用法总结如下</p>
+<p>#####NSInvocation的基本使用<br>我写成了NSObject的类别 主要是以下2个方法 你可以可以对你的需要进行衍生出你需要的 如没返回值 没参数 等等<br>1.类方法</p>
+<pre><code>+ (id)mh_dynamicExcuteSelector:(SEL)selector arguments:(id)arguments,...
+{
+    if ([self respondsToSelector:selector]) {
+        //创建一个函数签名，这个签名可以是任意的,但需要注意，签名函数的参数数量要和调用的一致。
+        NSMethodSignature *methodSignature = [self methodSignatureForSelector:selector];
+        //通过签名初始化
+        NSInvocation* inv = [NSInvocation invocationWithMethodSignature:methodSignature];
+        //设置参数
+        int index = 2;
+        id arg;
+        va_list args;
+        va_start(args, arguments);
+        if (arguments) {
+            [inv setArgument:&amp;arguments atIndex:index];
+            index++;
+        }
+        while ((arg = va_arg(args, id))) {
+            [inv setArgument:&amp;arg atIndex:index];
+            index++;
+        }
+        va_end(args);
+        [inv retainArguments];
+        //设置selecteor
+        [inv setSelector:selector];
+        //设置target
+        [inv setTarget:self];
+         //消息调用
+        [inv invoke];
+         //取这个返回值
+        void *returnValue = NULL;
+        [inv getReturnValue:&amp;returnValue];
+        return (__bridge id)returnValue;
+    }
+    return nil;
+}
+</code></pre><p>2.实例方法</p>
+<pre><code>- (id)mh_dynamicExcuteHasReturnValueWithMethodName:(NSString *)methodName arguments:(id)arguments,...
+{
+    void *returnValue = NULL;
+    SEL selector = NSSelectorFromString(methodName);
+    if ([self respondsToSelector:selector]) {
+        NSInvocation* inv = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:selector]];
+        int index = 2;
+        id arg;
+        va_list args;
+        va_start(args, arguments);
+        if (arguments) {
+            [inv setArgument:&amp;arguments atIndex:index];
+            index++;
+        }
+        while ((arg = va_arg(args, id))) {
+            [inv setArgument:&amp;arg atIndex:index];
+            index++;
+        }
+        va_end(args);
+        [inv retainArguments];
+        [inv setSelector:selector];
+        [inv setTarget:self];
+        [inv invoke];
+        [inv getReturnValue:&amp;returnValue];
+
+    }
+    return (__bridge id)returnValue;
+}
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;####叙述&lt;br&gt;iOS中可以直接调用某个对象的消息方式有2中，1.通过performSelector:withObject:函数可以直接调用这个消息。但是perform相关的这些函数，有一个局限性，其参数数量不能超过2个，否则要做很麻烦的处理，2.NSInvocatio
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>iOS跳转系统设置</title>

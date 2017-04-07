@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>iOS跳转系统设置 | menhui222</title>
+    <title>NSInvocation应用与理解 | menhui222</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -12,30 +12,15 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta name="description" content="####跳转到APP的设置界面跳转事件
-NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-
-       if([[UIApplication sharedApplication] canOpenURL:url]) {
-
-           NSURL *url =[NSURL URLWithStrin">
+    <meta name="description" content="####叙述iOS中可以直接调用某个对象的消息方式有2中，1.通过performSelector:withObject:函数可以直接调用这个消息。但是perform相关的这些函数，有一个局限性，其参数数量不能超过2个，否则要做很麻烦的处理，2.NSInvocation也是一种消息调用的方法，并且它的参数没有限制。这两种直接调用对象消息的方法，在iOS4.0之后，大多被block结构所取代，只有在很">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="iOS跳转系统设置 | menhui222">
-    <meta name="twitter:description" content="####跳转到APP的设置界面跳转事件
-NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-
-       if([[UIApplication sharedApplication] canOpenURL:url]) {
-
-           NSURL *url =[NSURL URLWithStrin">
+    <meta name="twitter:title" content="NSInvocation应用与理解 | menhui222">
+    <meta name="twitter:description" content="####叙述iOS中可以直接调用某个对象的消息方式有2中，1.通过performSelector:withObject:函数可以直接调用这个消息。但是perform相关的这些函数，有一个局限性，其参数数量不能超过2个，否则要做很麻烦的处理，2.NSInvocation也是一种消息调用的方法，并且它的参数没有限制。这两种直接调用对象消息的方法，在iOS4.0之后，大多被block结构所取代，只有在很">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="iOS跳转系统设置 | menhui222">
-    <meta property="og:description" content="####跳转到APP的设置界面跳转事件
-NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-
-       if([[UIApplication sharedApplication] canOpenURL:url]) {
-
-           NSURL *url =[NSURL URLWithStrin">
+    <meta property="og:title" content="NSInvocation应用与理解 | menhui222">
+    <meta property="og:description" content="####叙述iOS中可以直接调用某个对象的消息方式有2中，1.通过performSelector:withObject:函数可以直接调用这个消息。但是perform相关的这些函数，有一个局限性，其参数数量不能超过2个，否则要做很麻烦的处理，2.NSInvocation也是一种消息调用的方法，并且它的参数没有限制。这两种直接调用对象消息的方法，在iOS4.0之后，大多被block结构所取代，只有在很">
 
     
     <meta name="author" content="menhui222">
@@ -52,7 +37,7 @@ NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
     <link rel="alternate" type="application/rss+xml" title="menhui222" href="/atom.xml">
     
 
-    <link rel="canonical" href="http://menhui222.github.io/2017/04/06/iOS跳转系统设置/"/>
+    <link rel="canonical" href="http://menhui222.github.io/2017/04/07/NSInvocation应用与理解/"/>
 
     
       
@@ -175,66 +160,82 @@ NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
 
   <header class="post-header">
     <div class="post-meta">
-      <time datetime="2017-04-06T01:33:41.000Z" class="post-list__meta--date date">2017-04-06</time> &#8226; <span class="post-meta__tags tags">于&nbsp; </span>
+      <time datetime="2017-04-07T01:47:57.000Z" class="post-list__meta--date date">2017-04-07</time> &#8226; <span class="post-meta__tags tags">于&nbsp; </span>
       <span class="page-pv">
       &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
       </span> 
    
     </div>
-    <h1 class="post-title">iOS跳转系统设置</h1>
+    <h1 class="post-title">NSInvocation应用与理解</h1>
   </header>
 
   <section class="post">
-    <p>####跳转到APP的设置界面<br>跳转事件</p>
-<pre><code>NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    <p>####叙述<br>iOS中可以直接调用某个对象的消息方式有2中，1.通过performSelector:withObject:函数可以直接调用这个消息。但是perform相关的这些函数，有一个局限性，其参数数量不能超过2个，否则要做很麻烦的处理，2.NSInvocation也是一种消息调用的方法，并且它的参数没有限制。这两种直接调用对象消息的方法，在iOS4.0之后，大多被block结构所取代，只有在很老的兼容性系统中才会使用，简单用法总结如下</p>
+<p>#####NSInvocation的基本使用<br>我写成了NSObject的类别 主要是以下2个方法 你可以可以对你的需要进行衍生出你需要的 如没返回值 没参数 等等<br>1.类方法</p>
+<pre><code>+ (id)mh_dynamicExcuteSelector:(SEL)selector arguments:(id)arguments,...
+{
+    if ([self respondsToSelector:selector]) {
+        //创建一个函数签名，这个签名可以是任意的,但需要注意，签名函数的参数数量要和调用的一致。
+        NSMethodSignature *methodSignature = [self methodSignatureForSelector:selector];
+        //通过签名初始化
+        NSInvocation* inv = [NSInvocation invocationWithMethodSignature:methodSignature];
+        //设置参数
+        int index = 2;
+        id arg;
+        va_list args;
+        va_start(args, arguments);
+        if (arguments) {
+            [inv setArgument:&amp;arguments atIndex:index];
+            index++;
+        }
+        while ((arg = va_arg(args, id))) {
+            [inv setArgument:&amp;arg atIndex:index];
+            index++;
+        }
+        va_end(args);
+        [inv retainArguments];
+        //设置selecteor
+        [inv setSelector:selector];
+        //设置target
+        [inv setTarget:self];
+         //消息调用
+        [inv invoke];
+         //取这个返回值
+        void *returnValue = NULL;
+        [inv getReturnValue:&amp;returnValue];
+        return (__bridge id)returnValue;
+    }
+    return nil;
+}
+</code></pre><p>2.实例方法</p>
+<pre><code>- (id)mh_dynamicExcuteHasReturnValueWithMethodName:(NSString *)methodName arguments:(id)arguments,...
+{
+    void *returnValue = NULL;
+    SEL selector = NSSelectorFromString(methodName);
+    if ([self respondsToSelector:selector]) {
+        NSInvocation* inv = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:selector]];
+        int index = 2;
+        id arg;
+        va_list args;
+        va_start(args, arguments);
+        if (arguments) {
+            [inv setArgument:&amp;arguments atIndex:index];
+            index++;
+        }
+        while ((arg = va_arg(args, id))) {
+            [inv setArgument:&amp;arg atIndex:index];
+            index++;
+        }
+        va_end(args);
+        [inv retainArguments];
+        [inv setSelector:selector];
+        [inv setTarget:self];
+        [inv invoke];
+        [inv getReturnValue:&amp;returnValue];
 
-       if([[UIApplication sharedApplication] canOpenURL:url]) {
-
-           NSURL *url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
-
-           [[UIApplication sharedApplication] openURL:url];
-
-       }
-</code></pre><p>####跳转到系统设置的其他界面以wifi为例<br>1.在info.plist中URL Types添加   URL Schemes 为 prefs  也可以TARGETS中选择info 在URL Types添加<br>2.跳转代码</p>
-<pre><code>[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@&quot;prefs:root=WIFI
-</code></pre><h4 id="跳转到其他的界面的字段"><a href="#跳转到其他的界面的字段" class="headerlink" title="跳转到其他的界面的字段"></a>跳转到其他的界面的字段</h4><pre><code>蜂窝网络：prefs:root=MOBILE_DATA_SETTINGS_ID
-VPN — prefs:root=General&amp;path=Network/VPN
-Wi-Fi：prefs:root=WIFI
-定位服务：prefs:root=LOCATION_SERVICES
-个人热点：prefs:root=INTERNET_TETHERING
-关于本机：prefs:root=General&amp;path=About
-辅助功能：prefs:root=General&amp;path=ACCESSIBILITY
-飞行模式：prefs:root=AIRPLANE_MODE
-锁定：prefs:root=General&amp;path=AUTOLOCK
-亮度：prefs:root=Brightness
-蓝牙：prefs:root=General&amp;path=Bluetooth
-时间设置：prefs:root=General&amp;path=DATE_AND_TIME
-FaceTime：prefs:root=FACETIME
-设置：prefs:root=General
-键盘设置：prefs:root=General&amp;path=Keyboard
-iCloud：prefs:root=CASTLE
-iCloud备份：prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUP
-语言：prefs:root=General&amp;path=INTERNATIONAL
-定位：prefs:root=LOCATION_SERVICES
-音乐：prefs:root=MUSIC
-Music Equalizer — prefs:root=MUSIC&amp;path=EQ
-Music Volume Limit — prefs:root=MUSIC&amp;path=VolumeLimit
-Network — prefs:root=General&amp;path=Network
-Nike + iPod — prefs:root=NIKE_PLUS_IPOD
-Notes — prefs:root=NOTES
-Notification — prefs:root=NOTIFICATIONS_ID
-Phone — prefs:root=Phone
-Photos — prefs:root=Photos
-Profile — prefs:root=General&amp;path=ManagedConfigurationList
-Reset — prefs:root=General&amp;path=Reset
-Safari — prefs:root=Safari
-Siri — prefs:root=General&amp;path=Assistant
-Sounds — prefs:root=Sounds
-Software Update — prefs:root=General&amp;path=SOFTWARE_UPDATE_LINK
-Store — prefs:root=STORE
-Twitter — prefs:root=TWITTER
-Usage — prefs:root=General&amp;path=USAGE
-Wallpaper — prefs:root=Wallpaper
+    }
+    return (__bridge id)returnValue;
+}
 </code></pre>
   </section>
 
@@ -245,29 +246,20 @@ Wallpaper — prefs:root=Wallpaper
                
             <div class="read-more-item">
                 <span class="read-more-item-dim">最近的文章</span>
-                <h2 class="post-list__post-title post-title"><a href="/2016/09/09/Swift中柯里化/" title="Swift中柯里化">Swift中柯里化</a></h2>
+                <h2 class="post-list__post-title post-title"><a href="/2017/04/06/iOS跳转系统设置/" title="iOS跳转系统设置">iOS跳转系统设置</a></h2>
                 <p class="excerpt">
                 
-                ####Swift中的柯里化   1.Swift 里可以将方法进行柯里化 (Currying)，这是也就是把接受多个参数的方法进行一些变形，使其更加灵活的方法。函数式的编程思想贯穿于 Swift 中，而函数的柯里化正是这门语言函数式特点的重要表现。curry 是 Swift 中一个很灵活的特性，用最
+                ####跳转到APP的设置界面跳转事件
+NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+
+       if([[UIApplication sharedApplication] canOpenURL:u
                 &hellip;
                 </p>
-                <div class="post-list__meta"><time datetime="2016-09-09T07:27:04.000Z" class="post-list__meta--date date">2016-09-09</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/09/09/Swift中柯里化/">继续阅读</a></div>
+                <div class="post-list__meta"><time datetime="2017-04-06T01:33:41.000Z" class="post-list__meta--date date">2017-04-06</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2017/04/06/iOS跳转系统设置/">继续阅读</a></div>
                            
             </div>
         
         
-               
-            <div class="read-more-item">
-                <span class="read-more-item-dim">更早的文章</span>
-                <h2 class="post-list__post-title post-title"><a href="/2017/04/07/NSInvocation应用与理解/" title="NSInvocation应用与理解">NSInvocation应用与理解</a></h2>
-                <p class="excerpt">
-                
-                ####叙述iOS中可以直接调用某个对象的消息方式有2中，1.通过performSelector:withObject:函数可以直接调用这个消息。但是perform相关的这些函数，有一个局限性，其参数数量不能超过2个，否则要做很麻烦的处理，2.NSInvocation也是一种消息调用的方法，并且它的
-                &hellip;
-                </p>
-                <div class="post-list__meta"><time datetime="2017-04-07T01:47:57.000Z" class="post-list__meta--date date">2017-04-07</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2017/04/07/NSInvocation应用与理解/">继续阅读</a></div>
-                       
-            </div>
         
      
    
@@ -278,7 +270,7 @@ Wallpaper — prefs:root=Wallpaper
             
 <section class="post-comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="http://menhui222.github.io/2017/04/06/iOS跳转系统设置/" data-title="iOS跳转系统设置" data-url="http://menhui222.github.io/2017/04/06/iOS跳转系统设置/"></div>
+  <div class="ds-thread" data-thread-key="http://menhui222.github.io/2017/04/07/NSInvocation应用与理解/" data-title="NSInvocation应用与理解" data-url="http://menhui222.github.io/2017/04/07/NSInvocation应用与理解/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
   <script type="text/javascript">
