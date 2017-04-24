@@ -100,77 +100,6 @@
   </entry>
   
   <entry>
-    <title>iOS跳转系统设置</title>
-    <link href="http://menhui222.github.io/2017/04/06/iOS%E8%B7%B3%E8%BD%AC%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE/"/>
-    <id>http://menhui222.github.io/2017/04/06/iOS跳转系统设置/</id>
-    <published>2017-04-06T01:33:41.000Z</published>
-    <updated>2017-04-06T08:11:24.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>####跳转到APP的设置界面<br>跳转事件</p>
-<pre><code>NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-
-       if([[UIApplication sharedApplication] canOpenURL:url]) {
-
-           NSURL *url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
-
-           [[UIApplication sharedApplication] openURL:url];
-
-       }
-</code></pre><p>####跳转到系统设置的其他界面以wifi为例<br>1.在info.plist中URL Types添加   URL Schemes 为 prefs  也可以TARGETS中选择info 在URL Types添加<br>2.跳转代码</p>
-<pre><code>[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@&quot;prefs:root=WIFI
-</code></pre><h4 id="跳转到其他的界面的字段"><a href="#跳转到其他的界面的字段" class="headerlink" title="跳转到其他的界面的字段"></a>跳转到其他的界面的字段</h4><pre><code>蜂窝网络：prefs:root=MOBILE_DATA_SETTINGS_ID
-VPN — prefs:root=General&amp;path=Network/VPN
-Wi-Fi：prefs:root=WIFI
-定位服务：prefs:root=LOCATION_SERVICES
-个人热点：prefs:root=INTERNET_TETHERING
-关于本机：prefs:root=General&amp;path=About
-辅助功能：prefs:root=General&amp;path=ACCESSIBILITY
-飞行模式：prefs:root=AIRPLANE_MODE
-锁定：prefs:root=General&amp;path=AUTOLOCK
-亮度：prefs:root=Brightness
-蓝牙：prefs:root=General&amp;path=Bluetooth
-时间设置：prefs:root=General&amp;path=DATE_AND_TIME
-FaceTime：prefs:root=FACETIME
-设置：prefs:root=General
-键盘设置：prefs:root=General&amp;path=Keyboard
-iCloud：prefs:root=CASTLE
-iCloud备份：prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUP
-语言：prefs:root=General&amp;path=INTERNATIONAL
-定位：prefs:root=LOCATION_SERVICES
-音乐：prefs:root=MUSIC
-Music Equalizer — prefs:root=MUSIC&amp;path=EQ
-Music Volume Limit — prefs:root=MUSIC&amp;path=VolumeLimit
-Network — prefs:root=General&amp;path=Network
-Nike + iPod — prefs:root=NIKE_PLUS_IPOD
-Notes — prefs:root=NOTES
-Notification — prefs:root=NOTIFICATIONS_ID
-Phone — prefs:root=Phone
-Photos — prefs:root=Photos
-Profile — prefs:root=General&amp;path=ManagedConfigurationList
-Reset — prefs:root=General&amp;path=Reset
-Safari — prefs:root=Safari
-Siri — prefs:root=General&amp;path=Assistant
-Sounds — prefs:root=Sounds
-Software Update — prefs:root=General&amp;path=SOFTWARE_UPDATE_LINK
-Store — prefs:root=STORE
-Twitter — prefs:root=TWITTER
-Usage — prefs:root=General&amp;path=USAGE
-Wallpaper — prefs:root=Wallpaper
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;####跳转到APP的设置界面&lt;br&gt;跳转事件&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-
-       if([[UIApplication
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Swift中柯里化</title>
     <link href="http://menhui222.github.io/2016/09/09/Swift%E4%B8%AD%E6%9F%AF%E9%87%8C%E5%8C%96/"/>
     <id>http://menhui222.github.io/2016/09/09/Swift中柯里化/</id>
@@ -696,13 +625,84 @@ func checkmarkPath()-&gt; UIBezierPath{
   </entry>
   
   <entry>
+    <title>iOS跳转系统设置</title>
+    <link href="http://menhui222.github.io/2016/04/06/iOS%E8%B7%B3%E8%BD%AC%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE/"/>
+    <id>http://menhui222.github.io/2016/04/06/iOS跳转系统设置/</id>
+    <published>2016-04-06T01:33:41.000Z</published>
+    <updated>2017-04-24T11:32:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>####跳转到APP的设置界面<br>跳转事件</p>
+<pre><code>NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+
+       if([[UIApplication sharedApplication] canOpenURL:url]) {
+
+           NSURL *url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
+
+           [[UIApplication sharedApplication] openURL:url];
+
+       }
+</code></pre><p>####跳转到系统设置的其他界面以wifi为例<br>1.在info.plist中URL Types添加   URL Schemes 为 prefs  也可以TARGETS中选择info 在URL Types添加<br>2.跳转代码</p>
+<pre><code>[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@&quot;prefs:root=WIFI
+</code></pre><h4 id="跳转到其他的界面的字段"><a href="#跳转到其他的界面的字段" class="headerlink" title="跳转到其他的界面的字段"></a>跳转到其他的界面的字段</h4><pre><code>蜂窝网络：prefs:root=MOBILE_DATA_SETTINGS_ID
+VPN — prefs:root=General&amp;path=Network/VPN
+Wi-Fi：prefs:root=WIFI
+定位服务：prefs:root=LOCATION_SERVICES
+个人热点：prefs:root=INTERNET_TETHERING
+关于本机：prefs:root=General&amp;path=About
+辅助功能：prefs:root=General&amp;path=ACCESSIBILITY
+飞行模式：prefs:root=AIRPLANE_MODE
+锁定：prefs:root=General&amp;path=AUTOLOCK
+亮度：prefs:root=Brightness
+蓝牙：prefs:root=General&amp;path=Bluetooth
+时间设置：prefs:root=General&amp;path=DATE_AND_TIME
+FaceTime：prefs:root=FACETIME
+设置：prefs:root=General
+键盘设置：prefs:root=General&amp;path=Keyboard
+iCloud：prefs:root=CASTLE
+iCloud备份：prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUP
+语言：prefs:root=General&amp;path=INTERNATIONAL
+定位：prefs:root=LOCATION_SERVICES
+音乐：prefs:root=MUSIC
+Music Equalizer — prefs:root=MUSIC&amp;path=EQ
+Music Volume Limit — prefs:root=MUSIC&amp;path=VolumeLimit
+Network — prefs:root=General&amp;path=Network
+Nike + iPod — prefs:root=NIKE_PLUS_IPOD
+Notes — prefs:root=NOTES
+Notification — prefs:root=NOTIFICATIONS_ID
+Phone — prefs:root=Phone
+Photos — prefs:root=Photos
+Profile — prefs:root=General&amp;path=ManagedConfigurationList
+Reset — prefs:root=General&amp;path=Reset
+Safari — prefs:root=Safari
+Siri — prefs:root=General&amp;path=Assistant
+Sounds — prefs:root=Sounds
+Software Update — prefs:root=General&amp;path=SOFTWARE_UPDATE_LINK
+Store — prefs:root=STORE
+Twitter — prefs:root=TWITTER
+Usage — prefs:root=General&amp;path=USAGE
+Wallpaper — prefs:root=Wallpaper
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;####跳转到APP的设置界面&lt;br&gt;跳转事件&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+
+       if([[UIApplication
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>七鱼客服</title>
     <link href="http://menhui222.github.io/2016/03/30/%E4%B8%83%E9%B1%BC%E5%AE%A2%E6%9C%8D/"/>
     <id>http://menhui222.github.io/2016/03/30/七鱼客服/</id>
     <published>2016-03-30T03:49:56.000Z</published>
-    <updated>2016-07-27T03:51:02.000Z</updated>
+    <updated>2017-04-24T11:32:15.000Z</updated>
     
-    <content type="html"><![CDATA[<p> 导语：写这个文章首先是我刚建立用git来管理blog为了试试，但是我这样的新手感觉没东西可写，就最近集成了七鱼客服来写写 其实七鱼客服文档已经比较详细，文档地址<a href="http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html" target="_blank" rel="external">http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html</a> 我当然也加了自己在集成过程中遇到的一些的小东西，不过这些你也可以联系客服他们也很有耐心给你解决的，而且效率也是杠杠的 0.0  不过看我也希望我写的东西给大家带来方便。</p>
+    <content type="html"><![CDATA[<p> 导语：写这个文章首先最近集成了七鱼客服来写写 其实七鱼客服文档已经比较详细，文档地址<a href="http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html" target="_blank" rel="external">http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html</a> 我当然也加了自己在集成过程中遇到的一些的小东西。</p>
 <h4 id="一-集成SDK"><a href="#一-集成SDK" class="headerlink" title="一.集成SDK"></a>一.集成SDK</h4><h5 id="1-下载-QY-SDK，得到一个-a-文件、QYResouce-文件夹和-ExportHeaders-文件夹，将他们导入工程"><a href="#1-下载-QY-SDK，得到一个-a-文件、QYResouce-文件夹和-ExportHeaders-文件夹，将他们导入工程" class="headerlink" title="1.下载 QY SDK，得到一个 .a 文件、QYResouce 文件夹和 ExportHeaders 文件夹，将他们导入工程"></a>1.下载 QY SDK，得到一个 .a 文件、QYResouce 文件夹和 ExportHeaders 文件夹，将他们导入工程</h5><p>下载sdk地址<a href="http://nos.netease.com/ysf/QIYU_iOS_SDK_v1.2.1.zip" target="_blank" rel="external">http://nos.netease.com/ysf/QIYU_iOS_SDK_v1.2.1.zip</a></p>
 <h5 id="2-添加-QY-SDK-依赖库"><a href="#2-添加-QY-SDK-依赖库" class="headerlink" title="2. 添加 QY SDK 依赖库"></a>2. 添加 QY SDK 依赖库</h5><ul>
 <li><p>MobileCoreService.framework</p>
@@ -897,7 +897,7 @@ else
     
     <summary type="html">
     
-      &lt;p&gt; 导语：写这个文章首先是我刚建立用git来管理blog为了试试，但是我这样的新手感觉没东西可写，就最近集成了七鱼客服来写写 其实七鱼客服文档已经比较详细，文档地址&lt;a href=&quot;http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.h
+      &lt;p&gt; 导语：写这个文章首先最近集成了七鱼客服来写写 其实七鱼客服文档已经比较详细，文档地址&lt;a href=&quot;http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ht
     
     </summary>
     

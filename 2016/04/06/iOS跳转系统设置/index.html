@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>ios自带Emotion表情 | menhui222</title>
+    <title>iOS跳转系统设置 | menhui222</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -12,18 +12,30 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta name="description" content="##iOS 自定义emoji表情键盘
-####首先 ，想要获取系统的表情，要首先知道表情对应的UTF8 的编码方式    //将数字转为    func  EMOJI_CODE_TO_SYMBOL(x:Int)-&amp;gt; Int {    return ((((0x808080F0 | (x &amp;amp; 0x3F000) &amp;gt;&amp;gt; 4) | (x &amp;amp; 0xFC0) &amp;lt;&amp;lt;">
+    <meta name="description" content="####跳转到APP的设置界面跳转事件
+NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+
+       if([[UIApplication sharedApplication] canOpenURL:url]) {
+
+           NSURL *url =[NSURL URLWithStrin">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="ios自带Emotion表情 | menhui222">
-    <meta name="twitter:description" content="##iOS 自定义emoji表情键盘
-####首先 ，想要获取系统的表情，要首先知道表情对应的UTF8 的编码方式    //将数字转为    func  EMOJI_CODE_TO_SYMBOL(x:Int)-&amp;gt; Int {    return ((((0x808080F0 | (x &amp;amp; 0x3F000) &amp;gt;&amp;gt; 4) | (x &amp;amp; 0xFC0) &amp;lt;&amp;lt;">
+    <meta name="twitter:title" content="iOS跳转系统设置 | menhui222">
+    <meta name="twitter:description" content="####跳转到APP的设置界面跳转事件
+NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+
+       if([[UIApplication sharedApplication] canOpenURL:url]) {
+
+           NSURL *url =[NSURL URLWithStrin">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="ios自带Emotion表情 | menhui222">
-    <meta property="og:description" content="##iOS 自定义emoji表情键盘
-####首先 ，想要获取系统的表情，要首先知道表情对应的UTF8 的编码方式    //将数字转为    func  EMOJI_CODE_TO_SYMBOL(x:Int)-&amp;gt; Int {    return ((((0x808080F0 | (x &amp;amp; 0x3F000) &amp;gt;&amp;gt; 4) | (x &amp;amp; 0xFC0) &amp;lt;&amp;lt;">
+    <meta property="og:title" content="iOS跳转系统设置 | menhui222">
+    <meta property="og:description" content="####跳转到APP的设置界面跳转事件
+NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+
+       if([[UIApplication sharedApplication] canOpenURL:url]) {
+
+           NSURL *url =[NSURL URLWithStrin">
 
     
     <meta name="author" content="menhui222">
@@ -40,7 +52,7 @@
     <link rel="alternate" type="application/rss+xml" title="menhui222" href="/atom.xml">
     
 
-    <link rel="canonical" href="http://menhui222.github.io/2016/07/27/ios自带Emotion表情/"/>
+    <link rel="canonical" href="http://menhui222.github.io/2016/04/06/iOS跳转系统设置/"/>
 
     
       
@@ -163,21 +175,67 @@
 
   <header class="post-header">
     <div class="post-meta">
-      <time datetime="2016-07-27T05:45:15.000Z" class="post-list__meta--date date">2016-07-27</time> &#8226; <span class="post-meta__tags tags">于&nbsp; </span>
+      <time datetime="2016-04-06T01:33:41.000Z" class="post-list__meta--date date">2016-04-06</time> &#8226; <span class="post-meta__tags tags">于&nbsp; </span>
       <span class="page-pv">
       &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
       </span> 
    
     </div>
-    <h1 class="post-title">ios自带Emotion表情</h1>
+    <h1 class="post-title">iOS跳转系统设置</h1>
   </header>
 
   <section class="post">
-    <p>##iOS 自定义emoji表情键盘</p>
-<p>####首先 ，想要获取系统的表情，要首先知道表情对应的UTF8 的编码方式<br>    //将数字转为<br>    func  EMOJI_CODE_TO_SYMBOL(x:Int)-&gt; Int {<br>    return ((((0x808080F0 | (x &amp; 0x3F000) &gt;&gt; 4) | (x &amp; 0xFC0) &lt;&lt; 10) | (x &amp; 0x1C0000) &lt;&lt; 18) | (x &amp; 0x3F) &lt;&lt; 24)}</p>
-<p>####接着，将得到表情数组<br>    //获取默认表情数组<br>    func defaultEmoticons() -&gt; [String] {<br>        var  array = <a href="">String</a><br>        for (var i = 0x1F600; i &lt;= 0x1F64F; i+=1) {<br>            if (i &lt; 0x1F641 || i &gt; 0x1F644) {<br>                print(i)<br>                var symbol = EMOJI_CODE_TO_SYMBOL(i)<br>                print(sym)<br>                let emoji =  NSString(bytes: &amp;symbol, length:sizeof(Int), encoding: NSUTF8StringEncoding) as! String<br>                array.append(emoji)<br>            }<br>        }<br>        return array;<br>    }</p>
-<p>####服务器和安卓的兼容<br>让服务器用mysql来存储（用高版本）自动识别 uicode 的表情编码，安卓是可以识别的具体请看<a href="http://blog.csdn.net/qdkfriend/article/details/7576524" target="_blank" rel="external">http://blog.csdn.net/qdkfriend/article/details/7576524</a><br><img src="https://github.com/menhui222/BLOG_Image/blob/master/blog_image/enoji_1.png?raw=true" alt="image"></p>
+    <p>####跳转到APP的设置界面<br>跳转事件</p>
+<pre><code>NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
 
+       if([[UIApplication sharedApplication] canOpenURL:url]) {
+
+           NSURL *url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
+
+           [[UIApplication sharedApplication] openURL:url];
+
+       }
+</code></pre><p>####跳转到系统设置的其他界面以wifi为例<br>1.在info.plist中URL Types添加   URL Schemes 为 prefs  也可以TARGETS中选择info 在URL Types添加<br>2.跳转代码</p>
+<pre><code>[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@&quot;prefs:root=WIFI
+</code></pre><h4 id="跳转到其他的界面的字段"><a href="#跳转到其他的界面的字段" class="headerlink" title="跳转到其他的界面的字段"></a>跳转到其他的界面的字段</h4><pre><code>蜂窝网络：prefs:root=MOBILE_DATA_SETTINGS_ID
+VPN — prefs:root=General&amp;path=Network/VPN
+Wi-Fi：prefs:root=WIFI
+定位服务：prefs:root=LOCATION_SERVICES
+个人热点：prefs:root=INTERNET_TETHERING
+关于本机：prefs:root=General&amp;path=About
+辅助功能：prefs:root=General&amp;path=ACCESSIBILITY
+飞行模式：prefs:root=AIRPLANE_MODE
+锁定：prefs:root=General&amp;path=AUTOLOCK
+亮度：prefs:root=Brightness
+蓝牙：prefs:root=General&amp;path=Bluetooth
+时间设置：prefs:root=General&amp;path=DATE_AND_TIME
+FaceTime：prefs:root=FACETIME
+设置：prefs:root=General
+键盘设置：prefs:root=General&amp;path=Keyboard
+iCloud：prefs:root=CASTLE
+iCloud备份：prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUP
+语言：prefs:root=General&amp;path=INTERNATIONAL
+定位：prefs:root=LOCATION_SERVICES
+音乐：prefs:root=MUSIC
+Music Equalizer — prefs:root=MUSIC&amp;path=EQ
+Music Volume Limit — prefs:root=MUSIC&amp;path=VolumeLimit
+Network — prefs:root=General&amp;path=Network
+Nike + iPod — prefs:root=NIKE_PLUS_IPOD
+Notes — prefs:root=NOTES
+Notification — prefs:root=NOTIFICATIONS_ID
+Phone — prefs:root=Phone
+Photos — prefs:root=Photos
+Profile — prefs:root=General&amp;path=ManagedConfigurationList
+Reset — prefs:root=General&amp;path=Reset
+Safari — prefs:root=Safari
+Siri — prefs:root=General&amp;path=Assistant
+Sounds — prefs:root=Sounds
+Software Update — prefs:root=General&amp;path=SOFTWARE_UPDATE_LINK
+Store — prefs:root=STORE
+Twitter — prefs:root=TWITTER
+Usage — prefs:root=General&amp;path=USAGE
+Wallpaper — prefs:root=Wallpaper
+</code></pre>
   </section>
 
 </article>
@@ -187,16 +245,14 @@
                
             <div class="read-more-item">
                 <span class="read-more-item-dim">最近的文章</span>
-                <h2 class="post-list__post-title post-title"><a href="/2016/04/06/iOS跳转系统设置/" title="iOS跳转系统设置">iOS跳转系统设置</a></h2>
+                <h2 class="post-list__post-title post-title"><a href="/2016/03/30/七鱼客服/" title="七鱼客服">七鱼客服</a></h2>
                 <p class="excerpt">
                 
-                ####跳转到APP的设置界面跳转事件
-NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-
-       if([[UIApplication sharedApplication] canOpenURL:u
+                 导语：写这个文章首先最近集成了七鱼客服来写写 其实七鱼客服文档已经比较详细，文档地址http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html 我当然也加了自己在集成过程中遇到的一些的小东西。
+一.集成SDK1.下载 QY SDK，得到一个 .a 文件、Q
                 &hellip;
                 </p>
-                <div class="post-list__meta"><time datetime="2016-04-06T01:33:41.000Z" class="post-list__meta--date date">2016-04-06</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/04/06/iOS跳转系统设置/">继续阅读</a></div>
+                <div class="post-list__meta"><time datetime="2016-03-30T03:49:56.000Z" class="post-list__meta--date date">2016-03-30</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/03/30/七鱼客服/">继续阅读</a></div>
                            
             </div>
         
@@ -204,15 +260,14 @@ NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
                
             <div class="read-more-item">
                 <span class="read-more-item-dim">更早的文章</span>
-                <h2 class="post-list__post-title post-title"><a href="/2016/07/27/用CAShapeLayer-实现打钩动画轨迹效果/" title="用CAShapeLayer 实现打钩动画轨迹效果">用CAShapeLayer 实现打钩动画轨迹效果</a></h2>
+                <h2 class="post-list__post-title post-title"><a href="/2016/07/27/ios自带Emotion表情/" title="ios自带Emotion表情">ios自带Emotion表情</a></h2>
                 <p class="excerpt">
                 
-                ####首先对CAShapeLayer的了解CAShapeLayer相关的动画知识.
-普通CALayer在被初始化时是需要给一个frame值的,这个frame值一般都与给定view的bounds值一致,它本身是有形状的,而且是矩形.
-CAShapeLayer在初始化时也需要给一个frame值,但是,
+                ##iOS 自定义emoji表情键盘
+####首先 ，想要获取系统的表情，要首先知道表情对应的UTF8 的编码方式    //将数字转为    func  EMOJI_CODE_TO_SYMBOL(x:Int)-&amp;gt; Int {    return ((((0x808080F0 | (x &amp;am
                 &hellip;
                 </p>
-                <div class="post-list__meta"><time datetime="2016-07-27T07:01:06.000Z" class="post-list__meta--date date">2016-07-27</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/07/27/用CAShapeLayer-实现打钩动画轨迹效果/">继续阅读</a></div>
+                <div class="post-list__meta"><time datetime="2016-07-27T05:45:15.000Z" class="post-list__meta--date date">2016-07-27</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/07/27/ios自带Emotion表情/">继续阅读</a></div>
                        
             </div>
         
@@ -225,7 +280,7 @@ CAShapeLayer在初始化时也需要给一个frame值,但是,
             
 <section class="post-comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="http://menhui222.github.io/2016/07/27/ios自带Emotion表情/" data-title="ios自带Emotion表情" data-url="http://menhui222.github.io/2016/07/27/ios自带Emotion表情/"></div>
+  <div class="ds-thread" data-thread-key="http://menhui222.github.io/2016/04/06/iOS跳转系统设置/" data-title="iOS跳转系统设置" data-url="http://menhui222.github.io/2016/04/06/iOS跳转系统设置/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
   <script type="text/javascript">

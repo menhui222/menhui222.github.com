@@ -162,45 +162,18 @@
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/03/30/七鱼客服/" title="link to post.title">七鱼客服</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2016/04/06/iOS跳转系统设置/" title="link to post.title">iOS跳转系统设置</a></h2>
       <p class="excerpt">
     
-       导语：写这个文章首先最近集成了七鱼客服来写写 其实七鱼客服文档已经比较详细，文档地址http://qiyukf.com/doc/sdk/_book/iOS_SDK_Guide.html 我当然也加了自己在集成过程中遇到的一些的小东西。
-一.集成SDK1.下载 QY SDK，得到一个 .a 文件、QYResouce 文件夹和 ExportHeaders 文件夹，将他们导入工程下载sdk地址http
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-03-30T03:49:56.000Z" class="post-list__meta--date date">2016-03-30</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/03/30/七鱼客服/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/03/19/PromiseKit对Alamofire的扩展/" title="link to post.title">PromiseKit对Alamofire的扩展</a></h2>
-      <p class="excerpt">
-    
-      由于开发中遇到很多接口的逻辑关系  在第一届swift大会上也有提到用PromiseKit进行对接口的处理所以我试着写了下效果如下
-单个请求RequestGithub(&amp;quot;menhui222&amp;quot;).responseWK(WKGitHubUser).then ({ user in
+      ####跳转到APP的设置界面跳转事件
+NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
 
-       print(user.login)
-   }).error { (err) in
-   
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-03-19T09:43:46.000Z" class="post-list__meta--date date">2016-03-19</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/03/19/PromiseKit对Alamofire的扩展/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/03/07/我的相关/" title="link to post.title">我的相关</a></h2>
-      <p class="excerpt">
-    
-      ##新浪微博
-##github
+       if([[UIApplication sharedApplication] canOpenURL:url]) {
 
+           NSURL *url =[NSURL URLWithStrin
     &hellip;
       </p>
-      <div class="post-list__meta"><time datetime="2016-03-07T03:47:29.000Z" class="post-list__meta--date date">2016-03-07</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/03/07/我的相关/">继续阅读</a></div>
+      <div class="post-list__meta"><time datetime="2016-04-06T01:33:41.000Z" class="post-list__meta--date date">2016-04-06</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/04/06/iOS跳转系统设置/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
   
